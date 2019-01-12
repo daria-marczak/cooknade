@@ -9,5 +9,9 @@
 </script>
 
 <style scoped>
-
+  p {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    color: orange;
+  }
 </style>
