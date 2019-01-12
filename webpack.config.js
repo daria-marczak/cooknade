@@ -1,6 +1,8 @@
 const path = require("path");
 
 const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpakPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -43,6 +45,11 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'static', 'index.html'),
+      inject: true
+    }),
+    new CleanWebpakPlugin(['dist'])
   ]
 }
