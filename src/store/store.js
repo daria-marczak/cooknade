@@ -1,25 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import initialState from './initialState.js';
+import { initialState } from './initialState.js';
 
 Vue.use(Vuex);
 
-const state = {
-	recipes: initialState,
-};
+const store = new Vuex.Store({
+	state: {
+		recipes: initialState,
+	},
+	actions: {},
+	mutations: {},
+	getters: {
+		recipes: state => state.recipes,
+	},
+});
 
-const actions = {};
-
-const mutations = {};
-
-const getters = {
-	recipes: state => state.recipes,
-};
-
-export default {
-	state,
-	actions,
-	mutations,
-	getters,
-};
+export default store;
