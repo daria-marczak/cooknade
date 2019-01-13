@@ -18,9 +18,4 @@ export default {
     font-size: 48px;
     font-weight: normal;
   }
-
-  p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-  }
 </style>

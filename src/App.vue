@@ -2,25 +2,27 @@
   <v-app>
     <v-container>
       <Header/>
+      <CardList/>
     </v-container>
   </v-app>
 </template>
 
 <script>
 import Header from './components/Header';
+import CardList from './components/CardList';
 
   export default {
     name: "App",
     components: {
-      Header
+      Header,
+      CardList
     }
   }
 </script>
 
-<style scoped>
+<style>
   p {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 800;
-    color: blue;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
   }
 </style>
