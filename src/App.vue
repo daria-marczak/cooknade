@@ -1,5 +1,9 @@
 <template>
-  <Header/>
+  <v-app>
+    <v-container>
+      <Header/>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
