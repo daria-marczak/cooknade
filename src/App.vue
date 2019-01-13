@@ -1,10 +1,15 @@
 <template>
-  <p>I'm the app</p>
+  <Header/>
 </template>
 
 <script>
+import Header from './components/Header';
+
   export default {
-    name: "App"
+    name: "App",
+    components: {
+      Header
+    }
   }
 </script>
 
@@ -12,6 +17,6 @@
   p {
     font-family: 'Times New Roman', Times, serif;
     font-weight: 800;
-    color: orange;
+    color: blue;
   }
 </style>
