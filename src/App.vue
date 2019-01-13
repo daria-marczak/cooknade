@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container>
+      <v-container fluid grid-list-md pa-2>
       <Header/>
       <CardList/>
     </v-container>
