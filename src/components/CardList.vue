@@ -1,33 +1,55 @@
 <template>
-    <div class="row">
-        <Card
-          v-for="recipe in recipes"
-          v-bind:key="recipe.recipeId"
-          v-bind:image="recipe.imgUrl"
-          v-bind:title="recipe.title"
-        />
-    </div>
+  <Flickity ref="flickity" v-bind:options="flickityOptions">
+    <Card
+      v-for="recipe in recipes"
+      v-bind:key="recipe.recipeId"
+      v-bind:image="recipe.imgUrl"
+      v-bind:title="recipe.title"
+      class="carousel-cell"
+    />
+  </Flickity>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
+import Flickity from "vue-flickity";
 
-import Card from '../common/Card';
+import Card from "../common/Card";
 
 export default {
-  name: 'CardList',
+  name: "CardList",
+  data() {
+    return {
+      flickityOptions: {
+        initialIndex: 1,
+        prevNextButtons: false,
+        pageDots: true,
+        cellAlign: "left",
+        wrapAround: false
+      }
+    };
+  },
   components: {
-    Card
+    Card,
+    Flickity
   },
   computed: {
-    ...mapGetters(['recipes'])
+    ...mapGetters(["recipes"])
+  },
+  methods: {
+    next() {
+      this.$refs.flickity.next();
+    },
+    previous() {
+      this.$refs.flickity.previous();
+    }
   }
-}
+};
 </script>
 
 <style scoped>
-.row {
-  display: flex;
+.carousel-cell {
+  width: 50%;
 }
 </style>
 

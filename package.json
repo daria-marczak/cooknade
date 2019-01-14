@@ -27,6 +27,7 @@
   "dependencies": {
     "babel-preset-stage-0": "^6.24.1",
     "vue": "^2.5.22",
+    "vue-flickity": "^1.1.2",
     "vue-loader": "^15.5.1",
     "vue-router": "^3.0.2",
     "vuetify": "^1.4.1",
