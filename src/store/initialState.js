@@ -4,7 +4,7 @@ export const initialState = [
 		title: 'Strawberry Rhubarb Confiture',
 		description:
 			'Here is a delicious introduction to the business of canning, which can seem daunting but is made much easier by the right equipment and a good recipe. You’ll combine strawberries, rhubarb vanilla and sugar over heat and then follow standard canning instructions, laid out in the recipe’s instructions. It all leads up to summer sweetness in a jar that you’ve made yourself. And don’t worry: if your preserves are on the runny side, just call them syrup. No one will mind.',
-		category: 'Dessert',
+		category: 'dessert',
 		imgUrl: 'https://i.imgur.com/9PgwGJO.jpg',
 		ingredients: [
 			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
@@ -63,7 +63,7 @@ export const initialState = [
 		title: 'Strawberry Rhubarb Confiture',
 		description:
 			'Here is a delicious introduction to the business of canning, which can seem daunting but is made much easier by the right equipment and a good recipe. You’ll combine strawberries, rhubarb vanilla and sugar over heat and then follow standard canning instructions, laid out in the recipe’s instructions. It all leads up to summer sweetness in a jar that you’ve made yourself. And don’t worry: if your preserves are on the runny side, just call them syrup. No one will mind.',
-		category: 'Dessert',
+		category: 'dessert',
 		imgUrl: 'https://i.imgur.com/9PgwGJO.jpg',
 		ingredients: [
 			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
@@ -122,7 +122,7 @@ export const initialState = [
 		title: 'Strawberry Rhubarb Confiture',
 		description:
 			'Here is a delicious introduction to the business of canning, which can seem daunting but is made much easier by the right equipment and a good recipe. You’ll combine strawberries, rhubarb vanilla and sugar over heat and then follow standard canning instructions, laid out in the recipe’s instructions. It all leads up to summer sweetness in a jar that you’ve made yourself. And don’t worry: if your preserves are on the runny side, just call them syrup. No one will mind.',
-		category: 'Dessert',
+		category: 'dessert',
 		imgUrl: 'https://i.imgur.com/9PgwGJO.jpg',
 		ingredients: [
 			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
@@ -181,7 +181,7 @@ export const initialState = [
 		title: 'Strawberry Rhubarb Confiture',
 		description:
 			'Here is a delicious introduction to the business of canning, which can seem daunting but is made much easier by the right equipment and a good recipe. You’ll combine strawberries, rhubarb vanilla and sugar over heat and then follow standard canning instructions, laid out in the recipe’s instructions. It all leads up to summer sweetness in a jar that you’ve made yourself. And don’t worry: if your preserves are on the runny side, just call them syrup. No one will mind.',
-		category: 'Dessert',
+		category: 'dessert',
 		imgUrl: 'https://i.imgur.com/9PgwGJO.jpg',
 		ingredients: [
 			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
@@ -233,6 +233,114 @@ export const initialState = [
 		source: {
 			sourceName: 'New York Times',
 			sourceUrl: 'https://cooking.nytimes.com/recipes/12453-strawberry-rhubarb-confiture',
+		},
+	},
+	{
+		recipeId: 23455,
+		title: 'Sun dried chili peppers',
+		description:
+			'Dried peppers intensify in heat and flavor and can last indefinitely. They capture the warmth of summer, which we find ourselves desperate to recall in the frozen grips of February (what can ironically seem like the longest month!). Dried peppers can be used to season a number of dishes from soups and stews to curries and dips; and drying them yourself with a little sun-charging is easy and satisfying.',
+		category: 'vegetables',
+		imgUrl: 'https://i.imgur.com/vdzOlyp.jpg',
+		ingredients: [
+			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
+			'2 1/2 pounds rhubarb, trimmed and cut into 1/2-inch dice',
+			'3 cups sugar',
+			'juice of one lemon',
+			'1 vanilla bean',
+			'1/4 teaspoon butter',
+		],
+		timeOfPreparation: '2 hours of preparation, plus 6 to 12 hours for macerating and several hours for cooling',
+		preparation: [
+			{
+				step1:
+					"Inspect and wash the peppers, discarding ones with soft spots, strange odors or any other signs of bacteria or mold. Very lightly coat the peppers in a high heat oil such as coconut. Lay peppers flat on a large tray or cookie sheet making sure they're not overlapping—each pepper should be flat on the tray. Cover the tray with a thin screen mesh like you would use in growing sprouts. It can take your peppers two weeks to dry in the sun. You can rotate (flip) them every few days.",
+			},
+		],
+		source: {
+			sourceName: 'Organic authority',
+			sourceUrl: 'https://www.organicauthority.com/eco-chic-table/2-easy-methods-for-sublime-sun-dried-peppers',
+		},
+	},
+	{
+		recipeId: 23445,
+		title: 'Sun dried chili peppers',
+		description:
+			'Dried peppers intensify in heat and flavor and can last indefinitely. They capture the warmth of summer, which we find ourselves desperate to recall in the frozen grips of February (what can ironically seem like the longest month!). Dried peppers can be used to season a number of dishes from soups and stews to curries and dips; and drying them yourself with a little sun-charging is easy and satisfying.',
+		category: 'vegetables',
+		imgUrl: 'https://i.imgur.com/vdzOlyp.jpg',
+		ingredients: [
+			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
+			'2 1/2 pounds rhubarb, trimmed and cut into 1/2-inch dice',
+			'3 cups sugar',
+			'juice of one lemon',
+			'1 vanilla bean',
+			'1/4 teaspoon butter',
+		],
+		timeOfPreparation: '2 hours of preparation, plus 6 to 12 hours for macerating and several hours for cooling',
+		preparation: [
+			{
+				step1:
+					"Inspect and wash the peppers, discarding ones with soft spots, strange odors or any other signs of bacteria or mold. Very lightly coat the peppers in a high heat oil such as coconut. Lay peppers flat on a large tray or cookie sheet making sure they're not overlapping—each pepper should be flat on the tray. Cover the tray with a thin screen mesh like you would use in growing sprouts. It can take your peppers two weeks to dry in the sun. You can rotate (flip) them every few days.",
+			},
+		],
+		source: {
+			sourceName: 'Organic authority',
+			sourceUrl: 'https://www.organicauthority.com/eco-chic-table/2-easy-methods-for-sublime-sun-dried-peppers',
+		},
+	},
+	{
+		recipeId: 23457,
+		title: 'Sun dried chili peppers',
+		description:
+			'Dried peppers intensify in heat and flavor and can last indefinitely. They capture the warmth of summer, which we find ourselves desperate to recall in the frozen grips of February (what can ironically seem like the longest month!). Dried peppers can be used to season a number of dishes from soups and stews to curries and dips; and drying them yourself with a little sun-charging is easy and satisfying.',
+		category: 'vegetables',
+		imgUrl: 'https://i.imgur.com/vdzOlyp.jpg',
+		ingredients: [
+			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
+			'2 1/2 pounds rhubarb, trimmed and cut into 1/2-inch dice',
+			'3 cups sugar',
+			'juice of one lemon',
+			'1 vanilla bean',
+			'1/4 teaspoon butter',
+		],
+		timeOfPreparation: '2 hours of preparation, plus 6 to 12 hours for macerating and several hours for cooling',
+		preparation: [
+			{
+				step1:
+					"Inspect and wash the peppers, discarding ones with soft spots, strange odors or any other signs of bacteria or mold. Very lightly coat the peppers in a high heat oil such as coconut. Lay peppers flat on a large tray or cookie sheet making sure they're not overlapping—each pepper should be flat on the tray. Cover the tray with a thin screen mesh like you would use in growing sprouts. It can take your peppers two weeks to dry in the sun. You can rotate (flip) them every few days.",
+			},
+		],
+		source: {
+			sourceName: 'Organic authority',
+			sourceUrl: 'https://www.organicauthority.com/eco-chic-table/2-easy-methods-for-sublime-sun-dried-peppers',
+		},
+	},
+	{
+		recipeId: 13455,
+		title: 'Sun dried chili peppers',
+		description:
+			'Dried peppers intensify in heat and flavor and can last indefinitely. They capture the warmth of summer, which we find ourselves desperate to recall in the frozen grips of February (what can ironically seem like the longest month!). Dried peppers can be used to season a number of dishes from soups and stews to curries and dips; and drying them yourself with a little sun-charging is easy and satisfying.',
+		category: 'vegetables',
+		imgUrl: 'https://i.imgur.com/vdzOlyp.jpg',
+		ingredients: [
+			'2 pints (about 2 pounds) fresh strawberries, stemmed and cut into bite-size pieces',
+			'2 1/2 pounds rhubarb, trimmed and cut into 1/2-inch dice',
+			'3 cups sugar',
+			'juice of one lemon',
+			'1 vanilla bean',
+			'1/4 teaspoon butter',
+		],
+		timeOfPreparation: '2 hours of preparation, plus 6 to 12 hours for macerating and several hours for cooling',
+		preparation: [
+			{
+				step1:
+					"Inspect and wash the peppers, discarding ones with soft spots, strange odors or any other signs of bacteria or mold. Very lightly coat the peppers in a high heat oil such as coconut. Lay peppers flat on a large tray or cookie sheet making sure they're not overlapping—each pepper should be flat on the tray. Cover the tray with a thin screen mesh like you would use in growing sprouts. It can take your peppers two weeks to dry in the sun. You can rotate (flip) them every few days.",
+			},
+		],
+		source: {
+			sourceName: 'Organic authority',
+			sourceUrl: 'https://www.organicauthority.com/eco-chic-table/2-easy-methods-for-sublime-sun-dried-peppers',
 		},
 	},
 ];

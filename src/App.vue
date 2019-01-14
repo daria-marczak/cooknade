@@ -1,28 +1,37 @@
 <template>
   <v-app>
-      <v-container fluid grid-list-md pa-2>
+    <v-container fluid grid-list-md pa-2>
       <Header/>
-      <CardList/>
+      <Category
+        v-for="category in categories"
+        v-bind:category="category"
+        v-bind:key="category.index"
+      />
     </v-container>
   </v-app>
 </template>
 
 <script>
-import Header from './components/Header';
-import CardList from './components/CardList';
+import { mapGetters } from "vuex";
 
-  export default {
-    name: "App",
-    components: {
-      Header,
-      CardList
-    }
+import Header from "./components/Header";
+import Category from "./components/Category";
+
+export default {
+  name: "App",
+  components: {
+    Header,
+    Category
+  },
+  computed: {
+    ...mapGetters(["recipes", "categories"])
   }
+};
 </script>
 
 <style>
-  p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-  }
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
 </style>

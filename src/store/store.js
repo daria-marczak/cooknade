@@ -8,11 +8,13 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
 	state: {
 		recipes: initialState,
+		categories: ['dessert', 'vegetables'],
 	},
 	actions: {},
 	mutations: {},
 	getters: {
 		recipes: state => state.recipes,
+		categories: state => state.categories,
 	},
 });
 

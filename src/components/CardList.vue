@@ -4,6 +4,7 @@
       v-for="recipe in recipes"
       v-bind:key="recipe.recipeId"
       v-bind:image="recipe.imgUrl"
+      v-bind:alt="recipe.title"
       v-bind:title="recipe.title"
       class="carousel-cell"
     />
@@ -11,7 +12,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import Flickity from "vue-flickity";
 
 import Card from "../common/Card";
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       flickityOptions: {
-        initialIndex: 1,
+        initialIndex: 0,
         prevNextButtons: false,
         pageDots: true,
         cellAlign: "left",
@@ -29,12 +29,10 @@ export default {
       }
     };
   },
+  props: ["recipes"],
   components: {
     Card,
     Flickity
-  },
-  computed: {
-    ...mapGetters(["recipes"])
   },
   methods: {
     next() {
@@ -50,6 +48,17 @@ export default {
 <style scoped>
 .carousel-cell {
   width: 50%;
+}
+
+.flickity-page-dots {
+  bottom: -22px;
+}
+
+.flickity-page-dots .dot {
+  height: 4px;
+  width: 40px;
+  margin: 0;
+  border-radius: 0;
 }
 </style>
 
