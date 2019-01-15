@@ -6,7 +6,12 @@ router.get('/recipes', function(req, res) {
 });
 
 router.post('/recipes', function(req, res) {
-	res.send({ type: 'POST' });
+	console.log(req.body);
+	res.send({
+		type: 'POST',
+		recipe: req.body.recipe,
+		category: req.body.category,
+	});
 });
 
 router.put('/recipes/:id', function(req, res) {
