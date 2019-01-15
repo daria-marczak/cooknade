@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 import Header from "./components/Header";
 import Category from "./components/Category";
@@ -25,6 +25,12 @@ export default {
   },
   computed: {
     ...mapGetters(["recipes", "categories"])
+  },
+  methods: {
+    ...mapMutations(["getCategories"])
+  },
+  created() {
+    this.getCategories();
   }
 };
 </script>
