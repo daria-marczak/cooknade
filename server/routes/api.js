@@ -16,11 +16,17 @@ router.post('/recipes', function(req, res, next) {
 });
 
 router.put('/recipes/:id', function(req, res, next) {
-	res.send({ type: 'PUT' });
+	Recipe.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function() {
+		Recipe.findOne({ _id: req.params.id }).then(function(recipe) {
+			res.send(recipe);
+		});
+	});
 });
 
-router.delete('/recipe/:id', function(req, res, next) {
-	res.send({ type: 'DELETE' });
+router.delete('/recipes/:id', function(req, res, next) {
+	Recipe.findByIdAndRemove({ _id: req.params.id }).then(function(recipe) {
+		res.send(recipe);
+	});
 });
 
 router.get('/categories', function(req, res, next) {
