@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+const Recipe = require('../modules/recipe');
+
 router.get('/recipes', function(req, res) {
 	res.send({ type: 'GET' });
 });
 
 router.post('/recipes', function(req, res) {
-	console.log(req.body);
-	res.send({
-		type: 'POST',
-		recipe: req.body.recipe,
-		category: req.body.category,
+	Recipe.create(req.body).then(function(recipe) {
+		res.send({ recipe });
 	});
 });
 

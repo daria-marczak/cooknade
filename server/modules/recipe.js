@@ -6,34 +6,32 @@ const RecipeSchema = new Schema({
 		type: String,
 		required: [true, 'Title of the recipe is required'],
 	},
-	category: {
-		type: String,
-		required: [true, 'Recipe category is required'],
-	},
-	imgUrl: {
-		type: String,
-		required: [true, 'Recipe needs an image'],
-	},
-	ingredients: {
-		type: Array,
-		required: [true, 'Ingredients are required'],
-	},
-	timeOfPreparation: {
-		type: Number,
-		required: true,
-	},
-	preparation: {
-		type: String,
-		required: true,
-	},
-	source: {
-		sourceName: {
-			type: String,
-			required: true,
-		},
-		sourceUrl: {
-			type: String,
-			required: true,
-		},
-	},
+	category: String,
+	// imgUrl: String,
+	// ingredients: {
+	// 	type: Array,
+	// 	required: [true, 'Ingredients are required'],
+	// },
+	// timeOfPreparation: {
+	// 	type: Number,
+	// 	required: true,
+	// },
+	// preparation: {
+	// 	type: String,
+	// 	required: true,
+	// },
+	// source: {
+	// 	sourceName: {
+	// 		type: String,
+	// 		required: true,
+	// 	},
+	// 	sourceUrl: {
+	// 		type: String,
+	// 		required: true,
+	// 	},
+	// },
 });
+
+const Recipe = mongoose.model('recipe', RecipeSchema);
+
+module.exports = Recipe;
