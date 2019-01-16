@@ -4,7 +4,9 @@ const router = express.Router();
 const Recipe = require('../modules/recipe');
 
 router.get('/recipes', function(req, res) {
-	res.send({ type: 'GET' });
+	Recipe.find({}).then(function(recipes) {
+		res.send(recipes);
+	});
 });
 
 router.post('/recipes', function(req, res, next) {
