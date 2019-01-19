@@ -9,6 +9,9 @@ const app = express();
 mongoose.connect(url);
 mongoose.Promise = global.Promise;
 
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error'));
+
 app.use(bodyParser.json());
 app.use('/api', require('./routes/api'));
 

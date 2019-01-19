@@ -7,11 +7,11 @@ const RecipeSchema = new Schema({
 		required: [true, 'Title of the recipe is required'],
 	},
 	category: String,
-	// imgUrl: String,
-	// ingredients: {
-	// 	type: Array,
-	// 	required: [true, 'Ingredients are required'],
-	// },
+	imgUrl: String,
+	ingredients: {
+		type: Array,
+		required: [true, 'Ingredients are required'],
+	},
 	// timeOfPreparation: {
 	// 	type: Number,
 	// 	required: true,

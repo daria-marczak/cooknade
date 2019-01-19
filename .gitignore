@@ -4,3 +4,6 @@
 
 # vscode setup
 /.vscode
+
+# config file
+/server/config.js
