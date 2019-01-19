@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const url = require('./config');
+
 const app = express();
 
-mongoose.connect('mongodb://localhost/cooknade');
+mongoose.connect(url);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
