@@ -7,7 +7,7 @@ const RecipeSchema = new Schema({
 		required: [true, 'Title of the recipe is required'],
 	},
 	category: {
-		type: String,
+		type: Array,
 		required: [true, 'Category is required'],
 	},
 	description: {
@@ -23,22 +23,20 @@ const RecipeSchema = new Schema({
 		required: [true, 'Ingredients are required'],
 	},
 	timeOfPreparation: {
-		type: Number,
+		type: String,
 		required: true,
 	},
 	preparation: {
 		type: String,
 		required: true,
 	},
-	source: {
-		sourceName: {
-			type: String,
-			required: true,
-		},
-		sourceUrl: {
-			type: String,
-			required: true,
-		},
+	sourceName: {
+		type: String,
+		required: true,
+	},
+	sourceUrl: {
+		type: String,
+		required: true,
 	},
 });
 
