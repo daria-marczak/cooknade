@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
-import apiService from '../api/apiService';
+const url = 'http://localhost:4000/api/recipes';
 
 Vue.use(Vuex);
 
@@ -12,19 +13,18 @@ const store = new Vuex.Store({
 	},
 	actions: {
 		getRecipes() {
-			this.state.recipes = apiService.getRecipes();
-		},
-	},
-	mutations: {
-		getCategories() {
-			// const recipeCategories = this.state.recipes.map(recipe => recipe.category);
-			console.log(this.state.recipes);
-			// this.state.categories = [...new Set(recipeCategories)];
+			axios
+				.get(url)
+				.then(response => (this.state.recipes = response.data))
+				.catch(error => console.error(error));
 		},
 	},
 	getters: {
 		recipes: state => state.recipes,
-		categories: state => state.categories,
+		categories: state => {
+			const recipeCategories = [...state.recipes.map(recipe => recipe.category)];
+			state.categories = new Set(recipeCategories);
+		},
 	},
 });
 
