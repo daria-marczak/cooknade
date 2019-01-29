@@ -1,20 +1,25 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { initialState } from './initialState.js';
+import apiService from '../api/apiService';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	state: {
-		recipes: initialState,
+		recipes: [],
 		categories: [],
 	},
-	actions: {},
+	actions: {
+		getRecipes() {
+			this.state.recipes = apiService.getRecipes();
+		},
+	},
 	mutations: {
 		getCategories() {
-			const recipeCategories = this.state.recipes.map(recipe => recipe.category);
-			this.state.categories = [...new Set(recipeCategories)];
+			// const recipeCategories = this.state.recipes.map(recipe => recipe.category);
+			console.log(this.state.recipes);
+			// this.state.categories = [...new Set(recipeCategories)];
 		},
 	},
 	getters: {

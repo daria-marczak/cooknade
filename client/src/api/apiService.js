@@ -15,5 +15,3 @@ class apiService {
 		});
 	}
 }
-
-export default apiService;
