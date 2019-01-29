@@ -1,10 +1,19 @@
-import axios from "axios";
+import axios from 'axios';
 
-const url = "http://localhost:4000/api/recipes";
+const url = 'http://localhost:4000/api/recipes';
 
 class apiService {
-  // get recipes
-
-  // create recipe
-
+	static getRecipes() {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const response = await axios.get(url);
+				const data = response.data;
+				resolve(data);
+			} catch (error) {
+				reject(error);
+			}
+		});
+	}
 }
+
+export default apiService;
