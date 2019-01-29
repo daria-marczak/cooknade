@@ -2,6 +2,7 @@
   <v-app>
     <v-container fluid grid-list-md pa-2>
       <Header/>
+      {{categories}}
       <Category
         v-for="category in categories"
         v-bind:category="category"
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 import Header from "./components/Header";
 import Category from "./components/Category";
@@ -27,10 +28,10 @@ export default {
     ...mapGetters(["recipes", "categories"])
   },
   methods: {
-    ...mapMutations(["getCategories"])
+    ...mapActions(["getRecipes"])
   },
   created() {
-    this.getCategories();
+    this.getRecipes();
   }
 };
 </script>
