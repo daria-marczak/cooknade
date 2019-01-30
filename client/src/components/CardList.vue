@@ -2,6 +2,7 @@
   <Flickity ref="flickity" v-bind:options="flickityOptions">
     <Card
       v-for="recipe in recipes"
+      v-show="recipe"
       v-bind:key="recipe.recipeId"
       v-bind:image="recipe.imgUrl"
       v-bind:alt="recipe.title"

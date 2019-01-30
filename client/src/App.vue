@@ -2,7 +2,6 @@
   <v-app>
     <v-container fluid grid-list-md pa-2>
       <Header/>
-      {{categories}}
       <Category
         v-for="category in categories"
         v-bind:category="category"

@@ -21,7 +21,9 @@ export default {
       return this.category.charAt(0).toUpperCase() + this.category.slice(1);
     },
     filterCategory() {
-      return this.recipes.filter(recipe => recipe.category === this.category);
+      return this.recipes.map(recipe =>
+        recipe.category.includes(this.category) ? recipe : false
+      );
     },
     ...mapGetters(["recipes"])
   }

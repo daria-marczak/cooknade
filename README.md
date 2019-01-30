@@ -4,7 +4,7 @@ Application for storing, finding and creating new recipes. Created in order to l
 
 ## Start the application
 
-In order to start the app, you should clone this repository, install all the dependencies, then run `npm start` to launch Webpack dev server with HMR.
+In order to start the app, you should clone this repository, install all the dependencies, then run `npm start`, while being in the client folder, to launch Webpack dev server with HMR on the client side. To launch backend, go to the server folder and also run `npm start`.
 
 ## Technologies used
 
@@ -16,3 +16,7 @@ As a part of my learning, I used several technologies that are new for me.
 -   Flickity
 -   Webpack configured manually
 -   Vuetify
+-   Express
+-   Node
+-   MongoDB
+-   mLab
