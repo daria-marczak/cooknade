@@ -24,7 +24,7 @@ export default {
       flickityOptions: {
         initialIndex: 0,
         prevNextButtons: false,
-        pageDots: true,
+        pageDots: false,
         cellAlign: "left",
         wrapAround: false
       }
