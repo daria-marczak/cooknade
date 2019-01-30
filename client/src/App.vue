@@ -1,27 +1,30 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-container fluid grid-list-md pa-2>
       <Header/>
-      {{categories}}
       <Category
         v-for="category in categories"
         v-bind:category="category"
         v-bind:key="category.index"
       />
     </v-container>
+    <Footer/>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-import Header from "./components/Header";
+import Header from "./common/Header";
+import Footer from "./common/Footer";
+
 import Category from "./components/Category";
 
 export default {
   name: "App",
   components: {
     Header,
+    Footer,
     Category
   },
   computed: {
@@ -36,7 +39,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+* {
+  z-index: 0;
+  background: #fafafa;
+}
+
 p {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;

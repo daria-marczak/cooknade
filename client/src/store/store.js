@@ -22,8 +22,8 @@ const store = new Vuex.Store({
 	getters: {
 		recipes: state => state.recipes,
 		categories: state => {
-			const recipeCategories = [...state.recipes.map(recipe => recipe.category)];
-			state.categories = new Set(recipeCategories);
+			const recipeCategories = [].concat(...state.recipes.map(recipe => recipe.category));
+			return (state.categories = [...new Set(recipeCategories)]);
 		},
 	},
 });

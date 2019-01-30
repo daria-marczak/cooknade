@@ -5,10 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpakPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-	entry: {
-		polyfill: 'babel-polyfill',
-		app: './src/index.js',
-	},
+	entry: './src/index.js',
 	mode: 'development',
 	module: {
 		rules: [

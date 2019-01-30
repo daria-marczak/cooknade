@@ -15,7 +15,8 @@ export default {
 <style scoped>
 h2 {
   font-family: "Open Sans", sans-serif !important;
-  font-size: 12px;
+  font-size: 0.8em;
+  margin-top: 0.5em;
 }
 
 .card {
