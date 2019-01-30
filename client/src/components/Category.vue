@@ -2,7 +2,6 @@
   <div class="category">
     <h2>{{uppercaseCategory}}</h2>
     <CardList v-bind:recipes="filterCategory"/>
-    <p>Lorem ipsum dolor sit amet</p>
   </div>
 </template>
 
@@ -44,6 +43,6 @@ h2 {
 }
 
 .category:last-child {
-  margin-bottom: 3em;
+  margin-bottom: 4em;
 }
 </style>

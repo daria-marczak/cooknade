@@ -1,25 +1,25 @@
 <template>
-  <v-bottom-nav :active.sync="bottomNav" :value="true" fixed color="white">
-    <v-btn color="teal" flat value="home">
+  <v-bottom-nav :value="true" fixed color="white">
+    <v-btn color="secondary" flat value="home">
       <span>Home</span>
       <v-icon>home</v-icon>
     </v-btn>
 
-    <v-btn color="teal" flat value="calendar">
+    <v-btn color="secondary" flat value="calendar">
       <span>Calendar</span>
       <v-icon>calendar_today</v-icon>
     </v-btn>
 
-    <v-btn fab dark color="indigo">
+    <v-btn fab flat color="secondary">
       <v-icon>add</v-icon>
     </v-btn>
 
-    <v-btn color="teal" flat value="favorites">
+    <v-btn color="secondary" flat value="favorites">
       <span>Favorites</span>
       <v-icon>grade</v-icon>
     </v-btn>
 
-    <v-btn color="teal" flat value="favorites">
+    <v-btn color="secondary" flat value="profile">
       <span>Profile</span>
       <v-icon>person</v-icon>
     </v-btn>
