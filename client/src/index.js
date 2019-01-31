@@ -1,11 +1,11 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 
 import store from '../src/store/store';
 import App from './App.vue';
-import Recipe from './components/Recipe';
+import router from './router';
 
 Vue.use(Vuetify, {
 	theme: {
@@ -15,13 +15,7 @@ Vue.use(Vuetify, {
 	},
 });
 
-Vue.use(Router);
-
-const routes = [{ path: '/', component: App }, { path: '/recipe', component: Recipe }];
-
-export const router = new Router({
-	routes,
-});
+Vue.use(VueRouter);
 
 new Vue({
 	router,

@@ -9,4 +9,7 @@ export default {
 </script>
 
 <style scoped>
+* {
+  background: black;
+}
 </style>

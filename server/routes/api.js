@@ -31,8 +31,4 @@ router.delete('/recipes/:id', function(req, res, next) {
 	});
 });
 
-router.get('/categories', function(req, res, next) {
-	res.send({ type: 'GET' });
-});
-
 module.exports = router;

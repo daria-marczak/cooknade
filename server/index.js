@@ -16,7 +16,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
 app.use(bodyParser.json());
 app.use('/api', require('./routes/api'));
-app.use(history());
+app.use(
+	history({
+		disableDotRule: true,
+		verbose: true,
+	})
+);
 
 app.use(function(err, req, res, next) {
 	res.status(422).send({ error: err.message });
