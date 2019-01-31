@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Router from 'vue-router';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 
@@ -15,15 +15,16 @@ Vue.use(Vuetify, {
 	},
 });
 
-Vue.use(VueRouter);
+Vue.use(Router);
 
-export const router = new VueRouter({
-	mode: 'history',
-	routes: [{ path: '/', component: App }, { path: '/recipe', component: Recipe }],
+const routes = [{ path: '/', component: App }, { path: '/recipe', component: Recipe }];
+
+export const router = new Router({
+	routes,
 });
 
 new Vue({
 	router,
-	render: h => h(App),
 	store,
+	render: h => h(App),
 }).$mount('#app');
