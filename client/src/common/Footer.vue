@@ -1,8 +1,10 @@
 <template>
   <v-bottom-nav :value="true" fixed color="white">
     <v-btn color="secondary" flat value="home">
-      <span>Home</span>
-      <v-icon>home</v-icon>
+      <router-link to="/">
+        <span>Home</span>
+        <v-icon>home</v-icon>
+      </router-link>
     </v-btn>
 
     <v-btn color="secondary" flat value="calendar">
