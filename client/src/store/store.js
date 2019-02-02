@@ -19,11 +19,11 @@ const store = new Vuex.Store({
 				.then(response => (this.state.recipes = response.data))
 				.catch(error => console.error(error));
 		},
-		getRecipe(id) {
-			console.log(id);
+		getSingleRecipe(recipeId) {
+			console.log('recipeId', recipeId);
 			axios
-				.get(`${url}/${id}`)
-				.then(response => (this.state.recipe = console.log(response.data)))
+				.get(`${url}/${recipeId}`)
+				.then(response => (this.state.recipe = response.data))
 				.catch(error => console.error(error));
 		},
 	},

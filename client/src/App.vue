@@ -23,12 +23,8 @@ export default {
     Footer,
     Category
   },
-  computed: {
-    ...mapGetters(["recipes", "categories"])
-  },
-  methods: {
-    ...mapActions(["getRecipes"])
-  },
+  computed: mapGetters(["recipes", "categories"]),
+  methods: mapActions(["getRecipes"]),
   created() {
     this.getRecipes();
   }
