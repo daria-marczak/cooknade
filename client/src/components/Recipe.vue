@@ -10,6 +10,6 @@ export default {
 
 <style scoped>
 * {
-  background: black;
+  background: pink;
 }
 </style>

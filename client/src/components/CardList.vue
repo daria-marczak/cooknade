@@ -3,7 +3,8 @@
     <Card
       v-for="recipe in recipes"
       v-show="recipe"
-      v-bind:key="recipe.recipeId"
+      v-bind:key="recipe._id"
+      v-bind:id="recipe._id"
       v-bind:image="recipe.imgUrl"
       v-bind:alt="recipe.title"
       v-bind:title="recipe.title"

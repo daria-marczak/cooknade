@@ -1,14 +1,16 @@
 <template>
-  <div class="card">
-    <v-img v-bind:src="image" aspect-ratio="1" height="100px"></v-img>
-    <h2>{{title}}</h2>
-  </div>
+  <router-link to="`/recipe/${id}`">
+    <div class="card">
+      <v-img v-bind:src="image" aspect-ratio="1" height="100px"></v-img>
+      <h2>{{title}}</h2>
+    </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   name: "Card",
-  props: ["image", "title"]
+  props: ["image", "title", "id"]
 };
 </script>
 
@@ -22,5 +24,9 @@ h2 {
 .card {
   margin-right: 8px;
   max-width: 250px;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
