@@ -3,8 +3,21 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
-  name: "Recipe"
+  name: "Recipe",
+  methods: {
+    ...mapActions(["getRecipe"])
+  },
+  computed: {
+    ...mapGetters(["recipe"])
+  },
+  created() {
+    const { recipeId } = this.$route.params;
+    this.getRecipe(recipeId);
+    console.log(recipeId);
+  }
 };
 </script>
 

@@ -20,9 +20,10 @@ const store = new Vuex.Store({
 				.catch(error => console.error(error));
 		},
 		getRecipe(id) {
+			console.log(id);
 			axios
 				.get(`${url}/${id}`)
-				.then(response => (this.state.recipe = response.data))
+				.then(response => (this.state.recipe = console.log(response.data)))
 				.catch(error => console.error(error));
 		},
 	},
@@ -32,6 +33,7 @@ const store = new Vuex.Store({
 			const recipeCategories = [].concat(...state.recipes.map(recipe => recipe.category));
 			return (state.categories = [...new Set(recipeCategories)]);
 		},
+		recipe: state => state.recipe,
 	},
 });
 

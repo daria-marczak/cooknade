@@ -1,5 +1,5 @@
 <template>
-  <router-link v-bind:to="`/recipe/${id}`">
+  <router-link v-bind:to="'/recipes/' + id">
     <div class="card">
       <v-img v-bind:src="image" aspect-ratio="1" height="100px"></v-img>
       <h2>{{title}}</h2>

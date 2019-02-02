@@ -12,9 +12,11 @@ As a part of my learning, I used several technologies that are new for me.
 
 -   Vue
 -   Vuex
--   Vue Router (WIP)
+-   Vue Router
+-   Axios
 -   Flickity
 -   Webpack configured manually
+-   Babel
 -   Vuetify
 -   Express
 -   Node

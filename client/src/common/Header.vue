@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1 class="header">Cooknade</h1>
+    <router-link to="/">
+      <h1 class="header">Cooknade</h1>
+    </router-link>
     <p>Find the greatest idea for breakfast, dinner or dessert. Add some of your recipes and share them with others. And most of all: enjoy being a foodie.</p>
   </div>
 </template>
@@ -24,5 +26,9 @@ h1 {
   position: sticky;
   z-index: 11111;
   top: 0;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
