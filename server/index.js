@@ -1,5 +1,4 @@
 const express = require('express');
-// const connect = require('connect');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -20,17 +19,6 @@ app.use(function(err, req, res, next) {
 app.listen(process.env.port || 4000, function() {
 	console.log('listening for requests');
 });
-
-// const app = connect()
-// 	.use(history())
-// 	.use(cors())
-// 	.use('/api', require('./routes/api'))
-// 	.use(function(err, req, res, next) {
-// 		res.status(422).send({ error: err.message });
-// 	})
-// 	.listen(process.env.port || 4000, function() {
-// 		console.log('listening for requests');
-// 	});
 
 mongoose.connect(url);
 mongoose.Promise = global.Promise;

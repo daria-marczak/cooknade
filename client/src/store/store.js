@@ -10,12 +10,19 @@ const store = new Vuex.Store({
 	state: {
 		recipes: [],
 		categories: [],
+		recipe: {},
 	},
 	actions: {
 		getRecipes() {
 			axios
 				.get(url)
 				.then(response => (this.state.recipes = response.data))
+				.catch(error => console.error(error));
+		},
+		getRecipe(id) {
+			axios
+				.get(`${url}/${id}`)
+				.then(response => (this.state.recipe = response.data))
 				.catch(error => console.error(error));
 		},
 	},

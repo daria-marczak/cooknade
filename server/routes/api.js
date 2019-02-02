@@ -9,6 +9,14 @@ router.get('/recipes', function(req, res) {
 	});
 });
 
+router.get('/recipes/:id', function(req, res) {
+	Recipe.findById({
+		_id: req.params.id,
+	}).then(function(recipe) {
+		res.send(recipe);
+	});
+});
+
 router.post('/recipes', function(req, res, next) {
 	Recipe.create(req.body)
 		.then(function(recipe) {
