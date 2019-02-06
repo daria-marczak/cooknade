@@ -1,6 +1,7 @@
 <template>
   <v-app class="app">
     <v-container fluid grid-list-md pa-2>
+      <Header/>
       <Category
         v-for="category in categories"
         v-bind:category="category"
@@ -12,12 +13,13 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-
+import Header from "../common/Header";
 import Category from "./Category";
 
 export default {
   name: "Home",
   components: {
+    Header,
     Category
   },
   computed: {

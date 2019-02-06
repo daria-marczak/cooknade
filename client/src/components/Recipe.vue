@@ -9,9 +9,8 @@ export default {
   name: "Recipe",
   methods: mapActions(["getSingleRecipe"]),
   computed: mapGetters(["recipe"]),
-  created() {
+  beforeMount() {
     const { recipeId } = this.$route.params;
-    console.log(recipeId);
     this.getSingleRecipe(recipeId);
   }
 };

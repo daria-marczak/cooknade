@@ -20,7 +20,6 @@ const store = new Vuex.Store({
 				.catch(error => console.error(error));
 		},
 		getSingleRecipe: (state, recipeId) => {
-			console.log(recipeId);
 			axios
 				.get(`${url}/${recipeId}`)
 				.then(response => {

@@ -1,8 +1,7 @@
 <template>
   <v-app class="app">
     <v-container fluid grid-list-md pa-2>
-      <Header/>
-      <router-view></router-view>
+      <router-view :key="$route.fullPath"></router-view>
     </v-container>
     <Footer/>
   </v-app>
