@@ -1,29 +1,33 @@
 <template>
   <v-app class="app">
     <v-container fluid grid-list-md pa-2>
-      <router-view :key="$route.fullPath"></router-view>
+      <Header/>
+      <Category
+        v-for="category in categories"
+        v-bind:category="category"
+        v-bind:key="category.index"
+      />
     </v-container>
-    <Footer/>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-
-import Header from "./common/Header";
-import Footer from "./common/Footer";
-
-import Category from "./components/Category";
+import Header from "../common/Header";
+import Category from "./Category";
 
 export default {
-  name: "App",
+  name: "Home",
   components: {
     Header,
-    Footer,
     Category
   },
-  computed: mapGetters(["recipes", "categories"]),
-  methods: mapActions(["getRecipes"]),
+  computed: {
+    ...mapGetters(["recipes", "categories"])
+  },
+  methods: {
+    ...mapActions(["getRecipes"])
+  },
   created() {
     this.getRecipes();
   }

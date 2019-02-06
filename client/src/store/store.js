@@ -10,13 +10,31 @@ const store = new Vuex.Store({
 	state: {
 		recipes: [],
 		categories: [],
+		recipe: {},
 	},
-	actions: {
+	mutations: {
 		getRecipes() {
 			axios
 				.get(url)
 				.then(response => (this.state.recipes = response.data))
 				.catch(error => console.error(error));
+		},
+		getSingleRecipe: (state, recipeId) => {
+			axios
+				.get(`${url}/${recipeId}`)
+				.then(response => {
+					state.recipe = response.data;
+				})
+				.catch(error => console.error(error));
+		},
+	},
+	actions: {
+		getRecipes({ commit }) {
+			commit('getRecipes');
+		},
+		getSingleRecipe({ commit }, recipeId) {
+			console.log(recipeId);
+			commit('getSingleRecipe', recipeId);
 		},
 	},
 	getters: {
@@ -25,6 +43,7 @@ const store = new Vuex.Store({
 			const recipeCategories = [].concat(...state.recipes.map(recipe => recipe.category));
 			return (state.categories = [...new Set(recipeCategories)]);
 		},
+		recipe: state => state.recipe,
 	},
 });
 

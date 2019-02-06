@@ -1,9 +1,11 @@
 <template>
   <v-bottom-nav :value="true" fixed color="white">
-    <v-btn color="secondary" flat value="home">
-      <span>Home</span>
-      <v-icon>home</v-icon>
-    </v-btn>
+    <router-link to="/">
+      <v-btn color="secondary" flat value="home">
+        <span>Home</span>
+        <v-icon>home</v-icon>
+      </v-btn>
+    </router-link>
 
     <v-btn color="secondary" flat value="calendar">
       <span>Calendar</span>
@@ -35,5 +37,9 @@ export default {
 <style scoped>
 v-bottom-nav {
   margin-top: 1em;
+}
+
+a {
+  text-decoration: none;
 }
 </style>

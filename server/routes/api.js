@@ -9,6 +9,14 @@ router.get('/recipes', function(req, res) {
 	});
 });
 
+router.get('/recipes/:id', function(req, res) {
+	Recipe.findById({
+		_id: req.params.id,
+	}).then(function(recipe) {
+		res.send(recipe);
+	});
+});
+
 router.post('/recipes', function(req, res, next) {
 	Recipe.create(req.body)
 		.then(function(recipe) {
@@ -29,10 +37,6 @@ router.delete('/recipes/:id', function(req, res, next) {
 	Recipe.findByIdAndRemove({ _id: req.params.id }).then(function(recipe) {
 		res.send(recipe);
 	});
-});
-
-router.get('/categories', function(req, res, next) {
-	res.send({ type: 'GET' });
 });
 
 module.exports = router;

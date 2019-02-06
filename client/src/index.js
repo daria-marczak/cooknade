@@ -1,9 +1,12 @@
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 
 import store from '../src/store/store';
 import App from './App.vue';
+import Home from './components/Home.vue';
+import Recipe from './components/Recipe.vue';
 
 Vue.use(Vuetify, {
 	theme: {
@@ -13,7 +16,18 @@ Vue.use(Vuetify, {
 	},
 });
 
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+	mode: 'history',
+	routes: [
+		{ path: '/', name: 'Home', component: Home },
+		{ path: '/recipes/:recipeId', name: 'Recipe', component: Recipe },
+	],
+});
+
 new Vue({
-	render: h => h(App),
+	router,
 	store,
+	render: h => h(App),
 }).$mount('#app');
