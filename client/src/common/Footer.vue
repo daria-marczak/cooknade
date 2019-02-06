@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 v-bottom-nav {
-  margin-top: 1em;
+  margin-top: 4em;
 }
 
 a {
