@@ -33,7 +33,6 @@ const store = new Vuex.Store({
 			commit('getRecipes');
 		},
 		getSingleRecipe({ commit }, recipeId) {
-			console.log(recipeId);
 			commit('getSingleRecipe', recipeId);
 		},
 	},
