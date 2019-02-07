@@ -1,18 +1,30 @@
 <template>
-  <div>
+  <div class="recipe">
     <img v-bind:src="recipe.imgUrl">
     <v-container fluid grid-list-md pa-2 class="container">
-      <h2 v-html="recipe.title"/>
+      <div class="top">
+        <div class="recipe__title">
+          <h2 v-html="recipe.title"/>
+          <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
+        </div>
+        <div class="favorite">
+          <v-icon class="icon">favorite_border</v-icon>
+        </div>
+      </div>
       <v-chip v-for="category in recipe.category" v-bind:key="category">{{category}}</v-chip>
       <p class="description" v-html="recipe.description"/>
-      <v-list class="ingredients">
-        <template v-for="(ingredient, index) in recipe.ingredients" class="ingredient">
-          <v-list-tile v-bind:key="ingredient">{{ingredient}}</v-list-tile>
-          <v-divider v-if="index + 1 < recipe.ingredients.length" :key="index"></v-divider>
-        </template>
-      </v-list>
+      <div class="ingredients">
+        <div
+          v-for="ingredient in recipe.ingredients"
+          v-bind:key="ingredient"
+          class="ingredient"
+        >{{ingredient}}</div>
+      </div>
       <p v-html="recipe.preparation"/>
-      {{recipe}}
+      <p class="source">
+        SOURCE:
+        <a v-bind:href="recipe.sourceUrl" v-html="recipe.sourceName"/>
+      </p>
     </v-container>
   </div>
 </template>
@@ -43,6 +55,10 @@ img {
   left: 0;
 }
 
+.recipe {
+  margin-bottom: 5em;
+}
+
 .container {
   position: relative;
   margin-top: 50vh;
@@ -58,6 +74,25 @@ h2 {
   margin-top: 0.5em;
 }
 
+.top {
+  display: flex;
+}
+
+.favorite {
+  width: 3em;
+  margin-left: auto;
+  height: 3em;
+  border-radius: 100%;
+  border: 0.08em solid #fb3453;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  color: #fb3453;
+}
+
 p {
   font-family: "Open Sans", serif;
   font-weight: 400;
@@ -65,10 +100,35 @@ p {
 
 .ingredients {
   border-radius: 25px;
-  font-size: 0.95em !important;
+  background: #fff;
+  margin-bottom: 1em;
 }
 
-.v-list__tile {
-  height: 1.5em;
+.ingredient {
+  line-height: 2.2em;
+  border-bottom: 0.02em solid rgb(228, 228, 228);
+  padding: 0.2em 1em;
+}
+
+.ingredient::before {
+  display: inline-block;
+  content: "";
+  border-radius: 100%;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.5em;
+  background: #fb3453;
+}
+
+.ingredient:last-child {
+  border-bottom: none;
+}
+
+.source {
+  color: rgb(77, 77, 77);
+}
+
+a {
+  text-decoration: none;
 }
 </style>
