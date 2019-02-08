@@ -1,9 +1,9 @@
 <template>
   <v-app class="app">
-    <v-container fluid grid-list-md pa-2>
+    <v-container fluid grid-list-md>
       <router-view :key="$route.fullPath"></router-view>
     </v-container>
-    <Footer/>
+    <Footer v-if="isMobile"/>
   </v-app>
 </template>
 
@@ -23,9 +23,28 @@ export default {
     Category
   },
   computed: mapGetters(["recipes", "categories"]),
-  methods: mapActions(["getRecipes"]),
+  data() {
+    return {
+      isMobile: false
+    };
+  },
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener("resize", this.getWindowWidth);
+      this.getWindowWidth();
+    });
+  },
+  methods: {
+    getWindowWidth(event) {
+      this.isMobile = document.documentElement.clientWidth <= 880;
+    },
+    ...mapActions(["getRecipes"])
+  },
   created() {
     this.getRecipes();
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.getWindowWidth);
   }
 };
 </script>
