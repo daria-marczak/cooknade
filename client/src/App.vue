@@ -1,6 +1,7 @@
 <template>
-  <v-app class="app">
-    <v-container fluid grid-list-md>
+  <v-app>
+    <Drawer class="drawer"/>
+    <v-container fluid grid-list-md class="desktop">
       <router-view :key="$route.fullPath"></router-view>
     </v-container>
     <Footer v-if="isMobile"/>
@@ -12,6 +13,7 @@ import { mapGetters, mapActions } from "vuex";
 
 import Header from "./common/Header";
 import Footer from "./common/Footer";
+import Drawer from "./common/Drawer";
 
 import Category from "./components/Category";
 
@@ -20,6 +22,7 @@ export default {
   components: {
     Header,
     Footer,
+    Drawer,
     Category
   },
   computed: mapGetters(["recipes", "categories"]),
@@ -38,6 +41,9 @@ export default {
     getWindowWidth(event) {
       this.isMobile = document.documentElement.clientWidth <= 880;
     },
+    toggleMobile() {
+      this.isMobile ? "" : "desktop";
+    },
     ...mapActions(["getRecipes"])
   },
   created() {
@@ -51,8 +57,20 @@ export default {
 
 <style scoped>
 * {
+  margin: 0;
+  padding: 0;
   z-index: 0;
+  background: #fff;
+}
+
+.app {
+  display: flex !important;
+}
+
+.desktop {
   background: #fafafa;
+  max-width: 60%;
+  margin: 0 auto;
 }
 
 p {
