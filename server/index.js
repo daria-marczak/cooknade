@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const url = require('./config');
+const config = require('./config');
 const history = require('connect-history-api-fallback');
 
 const app = express();
@@ -20,7 +20,9 @@ app.listen(process.env.port || 4000, function() {
 	console.log('listening for requests');
 });
 
-mongoose.connect(url);
+require('./routes/auth')(app);
+
+mongoose.connect(config.url);
 mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
