@@ -19,6 +19,7 @@ h1 {
   font-family: "Abril Fatface", cursive;
   font-size: 48px;
   font-weight: normal;
+  text-align: center;
 }
 
 a {

@@ -23,7 +23,7 @@ export default {
     Category
   },
   computed: {
-    ...mapGetters(["recipes", "categories"])
+    ...mapGetters(["recipes", "categories", "isLoggedIn"])
   },
   methods: {
     ...mapActions(["getRecipes"])

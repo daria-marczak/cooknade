@@ -1,9 +1,10 @@
 <template>
   <v-app>
     <Drawer class="drawer"/>
-    <v-container fluid grid-list-md class="desktop">
+    <v-container fluid grid-list-md class="desktop" v-if="isLoggedIn">
       <router-view :key="$route.fullPath"></router-view>
     </v-container>
+    <Login v-else/>
     <Footer v-if="isMobile"/>
   </v-app>
 </template>
@@ -14,7 +15,7 @@ import { mapGetters, mapActions } from "vuex";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Drawer from "./common/Drawer";
-
+import Login from "./components/Login";
 import Category from "./components/Category";
 
 export default {
@@ -23,9 +24,10 @@ export default {
     Header,
     Footer,
     Drawer,
+    Login,
     Category
   },
-  computed: mapGetters(["recipes", "categories"]),
+  computed: mapGetters(["recipes", "categories", "isLoggedIn"]),
   data() {
     return {
       isMobile: false
