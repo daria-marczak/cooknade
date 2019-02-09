@@ -31,4 +31,11 @@ h1 {
 a {
   text-decoration: none;
 }
+
+@media screen and (min-width: 881px) {
+  h1 {
+    font-size: 5em;
+    text-align: center;
+  }
+}
 </style>

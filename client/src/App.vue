@@ -77,4 +77,11 @@ p {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
 }
+
+@media screen and (max-width: 880px) {
+  .desktop {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
 </style>

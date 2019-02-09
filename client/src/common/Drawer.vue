@@ -79,4 +79,10 @@ a {
 a:last-child {
   border-bottom: none;
 }
+
+@media screen and (max-width: 881px) {
+  .navigation {
+    display: none;
+  }
+}
 </style>
