@@ -2,15 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const passport = require('passport');
+
 const config = require('./config');
 const history = require('connect-history-api-fallback');
+require('./services/passport');
 
 const app = express();
 app.use(cors());
 
 app.use(bodyParser.json());
 app.use('/api', require('./routes/api'));
-app.use('/', require('./routes/auth'));
+// app.use('/', require('./routes/auth'));
+
+app.use(passport.initialize());
+app.use(passport.session());
+require('./routes/auth')(app);
 
 app.use(history());
 

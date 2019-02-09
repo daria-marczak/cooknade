@@ -1,4 +1,6 @@
 const passport = require('passport');
+const mongoose = require('mongoose');
+
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const config = require('../config');
 
