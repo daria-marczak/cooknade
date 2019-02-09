@@ -60,7 +60,7 @@ export default {
   margin: 0;
   padding: 0;
   z-index: 0;
-  background: #fff;
+  background: #fafafa;
 }
 
 .app {
@@ -68,9 +68,9 @@ export default {
 }
 
 .desktop {
-  background: #fafafa;
+  background: #fff;
   max-width: 60%;
-  margin: 0 auto;
+  margin-left: 31%;
 }
 
 p {
