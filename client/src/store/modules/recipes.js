@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const url = 'http://localhost:4000/api/recipes';
+
 const state = {
 	recipes: [],
 	categories: [],
@@ -7,10 +9,10 @@ const state = {
 };
 
 const mutations = {
-	getRecipes() {
+	getRecipes: () => {
 		axios
 			.get(url)
-			.then(response => (this.state.recipes = response.data))
+			.then(response => (state.recipes = response.data))
 			.catch(error => console.error(error));
 	},
 	getSingleRecipe: (state, recipeId) => {
@@ -24,10 +26,10 @@ const mutations = {
 };
 
 const actions = {
-	getRecipes({ commit }) {
+	getRecipes: ({ commit }) => {
 		commit('getRecipes');
 	},
-	getSingleRecipe({ commit }, recipeId) {
+	getSingleRecipe: ({ commit }, recipeId) => {
 		commit('getSingleRecipe', recipeId);
 	},
 };
