@@ -34,7 +34,8 @@ export default {
 h2 {
   font-family: Raleway, sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1.3em;
+  margin-bottom: 1em;
 }
 
 .category {

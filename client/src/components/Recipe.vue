@@ -135,6 +135,7 @@ a {
 @media screen and (min-width: 881px) {
   img {
     position: static;
+    height: 60vh;
   }
 
   .container {

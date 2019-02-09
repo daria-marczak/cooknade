@@ -27,7 +27,7 @@ export default {
         prevNextButtons: false,
         pageDots: false,
         cellAlign: "left",
-        wrapAround: true
+        wrapAround: false
       }
     };
   },
@@ -63,9 +63,21 @@ export default {
   border-radius: 0;
 }
 
-@media screen and (min-width: 881px) {
+@media screen and (min-width: 600px) and (max-width: 1100px) {
   .carousel-cell {
-    width: 37%;
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1500px) {
+  .carousel-cell {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .carousel-cell {
+    width: 30%;
   }
 }
 </style>

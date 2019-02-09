@@ -34,11 +34,22 @@ a {
   height: 10em;
 }
 
-@media screen and (min-width: 881px) {
+@media screen and (min-width: 880px) and (max-width: 1200px) {
   .image {
     width: 20em;
     height: 20em;
     border-radius: 25px;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .image {
+    width: 22em;
+    height: 22em;
+    border-radius: 25px;
+  }
+  h2 {
+    font-size: 1em;
   }
 }
 </style>
