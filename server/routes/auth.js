@@ -1,14 +1,15 @@
 const passport = require('passport');
-const express = require('express');
-const router = express.Router();
 
-router.get(
+app.get(
 	'/auth/google',
 	passport.authenticate('google', {
 		scope: ['profile, email'],
-	})
+	}),
+	function(req, res) {
+		console.log(req, res);
+	}
 );
 
-router.get('/auth/google/callback', passport.authenticate('google'));
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 module.exports = router;
