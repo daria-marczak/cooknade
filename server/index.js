@@ -10,6 +10,8 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use('/api', require('./routes/api'));
+app.use('/', require('./routes/auth'));
+
 app.use(history());
 
 app.use(function(err, req, res, next) {
@@ -19,8 +21,6 @@ app.use(function(err, req, res, next) {
 app.listen(process.env.port || 4000, function() {
 	console.log('listening for requests');
 });
-
-require('./routes/auth')(app);
 
 mongoose.connect(config.url);
 mongoose.Promise = global.Promise;
