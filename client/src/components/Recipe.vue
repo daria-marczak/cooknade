@@ -131,4 +131,17 @@ p {
 a {
   text-decoration: none;
 }
+
+@media screen and (min-width: 881px) {
+  img {
+    position: static;
+    height: 60vh;
+  }
+
+  .container {
+    position: static;
+    margin-top: -0.3em;
+    background: #fff;
+  }
+}
 </style>

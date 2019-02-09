@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/">
-      <h1 class="header">Cooknade</h1>
+      <h1>Cooknade</h1>
     </router-link>
     <p>Find the greatest idea for breakfast, dinner or dessert. Add some of your recipes and share them with others. And most of all: enjoy being a foodie.</p>
   </div>
@@ -21,14 +21,14 @@ h1 {
   font-weight: normal;
 }
 
-.header {
-  background-color: #fafafa;
-  position: sticky;
-  z-index: 11111;
-  top: 0;
-}
-
 a {
   text-decoration: none;
+}
+
+@media screen and (min-width: 881px) {
+  h1 {
+    font-size: 5em;
+    text-align: center;
+  }
 }
 </style>

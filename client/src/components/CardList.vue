@@ -62,5 +62,23 @@ export default {
   margin: 0;
   border-radius: 0;
 }
+
+@media screen and (min-width: 600px) and (max-width: 1100px) {
+  .carousel-cell {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1500px) {
+  .carousel-cell {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .carousel-cell {
+    width: 30%;
+  }
+}
 </style>
 
