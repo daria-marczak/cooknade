@@ -1,10 +1,12 @@
 <template>
   <v-container fluid grid-list-md pa-2>
-    <div class="header">
-      <h1>Cooknade</h1>
-    </div>
-    <div class="page">
-      <button class="login">Sign in with Google</button>
+    <div class="desktop">
+      <div class="header">
+        <h1>Cooknade</h1>
+      </div>
+      <div class="page">
+        <button class="login">Sign in with Google</button>
+      </div>
     </div>
   </v-container>
 </template>
@@ -36,5 +38,12 @@ h1 {
   padding: 1em;
   width: 90%;
   border-radius: 25px;
+}
+
+@media screen and (min-width: 880px) {
+  .desktop {
+    max-width: 60%;
+    margin-left: 31%;
+  }
 }
 </style>

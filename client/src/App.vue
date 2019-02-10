@@ -4,7 +4,7 @@
     <v-container fluid grid-list-md class="desktop" v-if="isLoggedIn">
       <router-view :key="$route.fullPath"></router-view>
     </v-container>
-    <Login v-else/>
+    <Login v-else v-bind:isMobile="isMobile"/>
     <Footer v-if="isMobile"/>
   </v-app>
 </template>
