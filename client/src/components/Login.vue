@@ -5,23 +5,15 @@
         <h1>Cooknade</h1>
       </div>
       <div class="page">
-        <button class="login" v-on:click="login">Sign in with Google</button>
+        <a class="login" href="/auth/google">Sign in with Google</a>
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
-  name: "Login",
-  methods: {
-    login() {
-      this.logIn();
-    },
-    ...mapActions(["logIn"])
-  }
+  name: "Login"
 };
 </script>
 
@@ -45,6 +37,8 @@ h1 {
   background: white;
   padding: 1em;
   width: 90%;
+  text-decoration: none;
+  text-align: center;
   border-radius: 25px;
 }
 
