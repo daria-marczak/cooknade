@@ -5,15 +5,23 @@
         <h1>Cooknade</h1>
       </div>
       <div class="page">
-        <button class="login">Sign in with Google</button>
+        <button class="login" v-on:click="login">Sign in with Google</button>
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: "Login"
+  name: "Login",
+  methods: {
+    login() {
+      this.logIn();
+    },
+    ...mapActions(["logIn"])
+  }
 };
 </script>
 
