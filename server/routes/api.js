@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Recipe = require('../modules/Recipe');
+const Recipe = require('../models/Recipe');
 
 router.get('/recipes', function(req, res) {
 	Recipe.find({}).then(function(recipes) {

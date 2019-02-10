@@ -1,21 +1,21 @@
 const passport = require('passport');
-const mongoose = require('mongoose');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const config = require('../config');
+const mongoose = require('mongoose');
 
-// const User = mongoose.model('user');
+const User = mongoose.model('user');
 
 passport.serializeUser((user, done) => {
 	console.log(id, done);
 
-	// done(null, user.id);
+	done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
 	console.log(id, done);
-	// User.findById(id).then(user => {
-	// 	done(null, user);
-	// });
+	User.findById(id).then(user => {
+		done(null, user);
+	});
 });
 
 passport.use(

@@ -6,7 +6,7 @@ const passport = require('passport');
 const history = require('connect-history-api-fallback');
 
 const config = require('./config');
-
+require('./models/User');
 require('./services/passport');
 
 const app = express();
