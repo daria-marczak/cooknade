@@ -1,5 +1,5 @@
 const passport = require('passport');
-const User = require('../modules/User');
+// const User = require('../modules/User');
 
 module.exports = app => {
 	app.get(
