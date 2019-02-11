@@ -29,8 +29,13 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: './dist',
+		index: 'static/index.html',
+		port: 8080,
 		historyApiFallback: {
 			rewrites: [{ from: /^\/$/, to: '/dist/index.html' }],
+		},
+		proxy: {
+			'/auth/google': 'http://localhost:4000',
 		},
 		hot: true,
 	},
@@ -44,13 +49,16 @@ module.exports = {
 		path: path.resolve(__dirname, '/dist'),
 		filename: 'bundle.js',
 	},
+	stats: {
+		children: false,
+	},
 	plugins: [
 		new VueLoaderPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'static', 'index.html'),
 			inject: true,
 		}),
-		// new CleanWebpakPlugin(['dist']),
+		new CleanWebpakPlugin(['dist']),
 		new webpack.HotModuleReplacementPlugin(),
 	],
 };
