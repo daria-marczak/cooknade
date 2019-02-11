@@ -29,7 +29,9 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: './dist',
-		historyApiFallback: true,
+		historyApiFallback: {
+			rewrites: [{ from: /^\/$/, to: '/dist/index.html' }],
+		},
 		hot: true,
 	},
 	resolve: {
@@ -39,8 +41,7 @@ module.exports = {
 		},
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
-		publicPath: 'http://localhost:8080',
+		path: path.resolve(__dirname, '/dist'),
 		filename: 'bundle.js',
 	},
 	plugins: [
@@ -49,7 +50,7 @@ module.exports = {
 			template: path.resolve(__dirname, 'static', 'index.html'),
 			inject: true,
 		}),
-		new CleanWebpakPlugin(['dist']),
+		// new CleanWebpakPlugin(['dist']),
 		new webpack.HotModuleReplacementPlugin(),
 	],
 };
