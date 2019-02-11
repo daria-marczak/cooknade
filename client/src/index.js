@@ -2,11 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
-
 import store from '../src/store/store';
 import App from './App.vue';
 import Home from './components/Home.vue';
 import Recipe from './components/Recipe.vue';
+import '../static/favicon.ico';
 
 Vue.use(Vuetify, {
 	theme: {

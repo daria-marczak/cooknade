@@ -25,6 +25,10 @@ module.exports = {
 				test: /\.css$/,
 				use: ['vue-style-loader', 'css-loader'],
 			},
+			{
+				test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+				loader: 'file-loader?name=[name].[ext]',
+			},
 		],
 	},
 	devServer: {
@@ -56,6 +60,7 @@ module.exports = {
 		new VueLoaderPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'static', 'index.html'),
+			favicon: './static/favicon.ico',
 			inject: true,
 		}),
 		new CleanWebpakPlugin(['dist']),
