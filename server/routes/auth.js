@@ -12,7 +12,12 @@ module.exports = app => {
 		res.send(req.user);
 	});
 
-	app.get('/current_user', (req, res) => {
+	app.get('/api/current_user', (req, res) => {
 		res.send(req.user);
+	});
+
+	app.get('/api/logout', (req, res) => {
+		req.logout(); // It's automatically attached to the passport. It takes the cookie and destroys it
+		res.redirect('/');
 	});
 };
