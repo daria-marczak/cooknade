@@ -35,9 +35,9 @@ module.exports = {
 		contentBase: './dist',
 		index: 'static/index.html',
 		port: 8080,
-		historyApiFallback: {
-			rewrites: [{ from: /^\/$/, to: '/dist/index.html' }],
-		},
+		// historyApiFallback: {
+		// 	rewrites: [{ from: /^\/$/, to: '/dist/index.html' }],
+		// },
 		proxy: {
 			'/auth/google': 'http://localhost:4000',
 		},

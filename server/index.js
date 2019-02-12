@@ -32,9 +32,9 @@ app.listen(process.env.port || 4000, function() {
 
 app.use(express.static('client'));
 
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+// });
 
 mongoose.connect(config.url);
 mongoose.Promise = global.Promise;
