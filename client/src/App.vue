@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Drawer class="drawer"/>
+    <Drawer class="drawer" v-if="isLoggedIn"/>
     <v-container fluid grid-list-md class="desktop" v-if="isLoggedIn">
       <router-view :key="$route.fullPath"></router-view>
     </v-container>

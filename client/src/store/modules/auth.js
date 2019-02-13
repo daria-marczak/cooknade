@@ -1,8 +1,18 @@
+import axios from 'axios';
+
 const state = {
-	isLoggedIn: false,
+	isLoggedIn: true,
+	userId: '',
 };
 
-const actions = {};
+const url = '/auth/current_user';
+
+const actions = {
+	finishAuth: () => {
+		const response = axios.get(url).then(response => response);
+		console.log(response);
+	},
+};
 
 const mutations = {};
 

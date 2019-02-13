@@ -38,12 +38,10 @@ module.exports = {
 		historyApiFallback: {
 			rewrites: [{ from: /^\/$/, to: '/dist/index.html' }],
 		},
-		proxy: [
-			{
-				context: ['/auth', '/api'],
-				target: 'http://localhost:4000',
-			},
-		],
+		proxy: {
+			'/auth': 'http://localhost:4000',
+			'/auth/google': 'http://localhost:4000',
+		},
 		hot: true,
 	},
 	resolve: {
