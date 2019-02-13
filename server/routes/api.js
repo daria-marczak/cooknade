@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Recipe = require('../modules/recipe');
+const Recipe = require('../models/Recipe');
 
 router.get('/recipes', function(req, res) {
 	Recipe.find({}).then(function(recipes) {
@@ -37,6 +37,10 @@ router.delete('/recipes/:id', function(req, res, next) {
 	Recipe.findByIdAndRemove({ _id: req.params.id }).then(function(recipe) {
 		res.send(recipe);
 	});
+});
+
+router.get('/current_user', (req, res) => {
+	res.send(req.user);
 });
 
 module.exports = router;

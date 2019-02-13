@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link to="/">
+    <router-link to="/home">
       <h1>Cooknade</h1>
     </router-link>
     <p>Find the greatest idea for breakfast, dinner or dessert. Add some of your recipes and share them with others. And most of all: enjoy being a foodie.</p>
@@ -19,6 +19,7 @@ h1 {
   font-family: "Abril Fatface", cursive;
   font-size: 48px;
   font-weight: normal;
+  text-align: center;
 }
 
 a {

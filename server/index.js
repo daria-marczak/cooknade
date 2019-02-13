@@ -2,14 +2,33 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const url = require('./config');
+const passport = require('passport');
 const history = require('connect-history-api-fallback');
+const cookieSession = require('cookie-session');
+const path = require('path');
+const config = require('./config');
+
+require('./models/User');
+require('./services/passport');
 
 const app = express();
 app.use(cors());
 
 app.use(bodyParser.json());
+
+app.use(
+	cookieSession({
+		maxAge: 24 * 60 * 60 * 1000,
+		keys: [config.cookieKey],
+	})
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api', require('./routes/api'));
+app.use('/auth', require('./routes/auth'));
+
 app.use(history());
 
 app.use(function(err, req, res, next) {
@@ -20,7 +39,13 @@ app.listen(process.env.port || 4000, function() {
 	console.log('listening for requests');
 });
 
-mongoose.connect(url);
+app.use(express.static('client'));
+
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+});
+
+mongoose.connect(config.url);
 mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;

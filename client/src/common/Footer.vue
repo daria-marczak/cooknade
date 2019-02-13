@@ -1,6 +1,6 @@
 <template>
   <v-bottom-nav :value="true" fixed color="white">
-    <router-link to="/">
+    <router-link to="/home">
       <v-btn color="secondary" flat value="home">
         <span>Home</span>
         <v-icon>home</v-icon>

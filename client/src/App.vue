@@ -14,7 +14,7 @@ import { mapGetters, mapActions } from "vuex";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Drawer from "./common/Drawer";
-
+import Login from "./components/Login";
 import Category from "./components/Category";
 
 export default {
@@ -23,9 +23,10 @@ export default {
     Header,
     Footer,
     Drawer,
+    Login,
     Category
   },
-  computed: mapGetters(["recipes", "categories"]),
+  computed: mapGetters(["recipes", "categories", "isLoggedIn"]),
   data() {
     return {
       isMobile: false
