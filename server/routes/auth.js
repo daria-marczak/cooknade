@@ -11,12 +11,20 @@ router.get(
 );
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-	res.send(req.user);
+	res.redirect('/auth/current_user');
 });
 
-// router.get('/api/current_user', (req, res) => {
-// 	res.send(req.user);
-// });
+const authCheck = (req, res, next) => {
+	if (!req.res) {
+		res.redirect('auth/google');
+	} else {
+		next();
+	}
+};
+
+router.get('/current_user', authCheck, (req, res) => {
+	res.send(req.user);
+});
 
 // router.get('/api/logout', (req, res) => {
 // 	req.logout();

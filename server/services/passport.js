@@ -27,8 +27,6 @@ passport.use(
 			User.findOne({ googleID: profile.id })
 				.then(currentUser => {
 					if (currentUser) {
-						console.log(currentUser);
-
 						return done(null, currentUser);
 					} else {
 						new User({ googleId: profile.id, name: profile.displayName }).save().then(newUser => {
