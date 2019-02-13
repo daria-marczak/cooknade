@@ -11,7 +11,7 @@ router.get(
 );
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-	res.redirect('/auth/current_user');
+	res.redirect('/home');
 });
 
 const authCheck = (req, res, next) => {
