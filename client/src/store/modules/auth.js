@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const state = {
-	isLoggedIn: true,
+	isLoggedIn: null,
 	userId: '',
 	userName: '',
 };
@@ -19,13 +19,12 @@ const mutations = {
 		axios.get(url).then(response => {
 			state.userId = response.data._id;
 			state.userName = response.data.name;
-			console.log(response);
 		});
 	},
 };
 
 const getters = {
-	isLoggedIn: state => state.isLoggedIn,
+	isLoggedIn: state => !!state.userId,
 	userId: state => state.userId,
 	userName: state => state.userName,
 };

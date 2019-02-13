@@ -1,10 +1,9 @@
 <template>
   <v-app>
-    <Drawer class="drawer" v-if="isLoggedIn"/>
-    <v-container fluid grid-list-md class="desktop" v-if="isLoggedIn">
+    <Drawer class="drawer"/>
+    <v-container fluid grid-list-md class="desktop">
       <router-view :key="$route.fullPath"></router-view>
     </v-container>
-    <Login v-else v-bind:isMobile="isMobile"/>
     <Footer v-if="isMobile"/>
   </v-app>
 </template>
