@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
 const history = require('connect-history-api-fallback');
+const cookieSession = require('cookie-session');
 const path = require('path');
-// const proxy = require('http-proxy-middleware');
 const config = require('./config');
+
 require('./models/User');
 require('./services/passport');
 
@@ -14,11 +15,19 @@ const app = express();
 app.use(cors());
 
 app.use(bodyParser.json());
-app.use('/api', require('./routes/api'));
+
+app.use(
+	cookieSession({
+		maxAge: 24 * 60 * 60 * 1000,
+		keys: [config.cookieKey],
+	})
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./routes/auth')(app);
+
+app.use('/api', require('./routes/api'));
+app.use('/auth', require('./routes/auth'));
 
 app.use(history());
 
@@ -32,9 +41,9 @@ app.listen(process.env.port || 4000, function() {
 
 app.use(express.static('client'));
 
-// app.get('*', (req, res) => {
-// 	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-// });
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+});
 
 mongoose.connect(config.url);
 mongoose.Promise = global.Promise;

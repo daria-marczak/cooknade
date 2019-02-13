@@ -1,5 +1,5 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const config = require('../config');
 const mongoose = require('mongoose');
 
@@ -10,7 +10,6 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-	console.log(id, done);
 	User.findById(id).then(user => {
 		done(null, user);
 	});
@@ -24,15 +23,22 @@ passport.use(
 			callbackURL: '/auth/google/callback',
 			proxy: true,
 		},
-		async (accessToken, refreshToken, profile, done) => {
-			const existingUser = await User.findOne({ googleID: profile.id });
+		(accessToken, refreshToken, profile, done) => {
+			User.findOne({ googleID: profile.id })
+				.then(currentUser => {
+					if (currentUser) {
+						console.log(currentUser);
 
-			if (existingUser) {
-				return done(null, existingUser);
-			}
-
-			const user = await new User({ googleId: profile.id, name: profile.displayName }).save();
-			done(null, user);
+						return done(null, currentUser);
+					} else {
+						new User({ googleId: profile.id, name: profile.displayName }).save().then(newUser => {
+							return done(null, newUser);
+						});
+					}
+				})
+				.catch(error => {
+					console.log(error, 'Promise error');
+				});
 		}
 	)
 );
