@@ -5,10 +5,9 @@
       <div class="top">
         <div class="recipe__title">
           <h2 v-html="recipe.title"/>
-          {{userId}}
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
-        <button class="favorite">
+        <button class="favorite" v-on:click="likeIt">
           <v-icon class="icon">favorite_border</v-icon>
         </button>
       </div>
@@ -36,9 +35,11 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Recipe",
   methods: {
-    // on btton click, send a call to api with both recipeId, as well as
-    // userId
-    ...mapActions(["getSingleRecipe"])
+    likeIt() {
+      console.log(this.userId, this.recipe.recipeId);
+      this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
+    },
+    ...mapActions(["getSingleRecipe", "addToFavorites"])
   },
   computed: mapGetters(["recipe", "userId"]),
   beforeMount() {
