@@ -5,6 +5,7 @@
       <div class="top">
         <div class="recipe__title">
           <h2 v-html="recipe.title"/>
+          {{userId}}
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
         <button class="favorite">
@@ -39,7 +40,7 @@ export default {
     // userId
     ...mapActions(["getSingleRecipe"])
   },
-  computed: mapGetters(["recipe"]),
+  computed: mapGetters(["recipe", "userId"]),
   beforeMount() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
