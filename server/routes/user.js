@@ -3,9 +3,13 @@ const router = express.Router();
 
 const User = require('../models/User');
 
-router.post('/:userId/favorites', (req, res) => {
-	User.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(() => {
-		res.send('trying to update');
+router.put('/:userId/favorites', (req, res) => {
+	const recipeId = req.body.favorites;
+	console.log(recipeId);
+
+	User.findByIdAndUpdate(req.params.id, { $push: { favorites: recipeId } }).then(() => {
+		User.findById(req.params.id).then(user => console.log(user));
+		// console.log(user);
 	});
 });
 
