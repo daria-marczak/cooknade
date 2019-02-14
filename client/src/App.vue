@@ -66,10 +66,11 @@ export default {
 
 .app {
   display: flex !important;
+  height: 100%;
 }
 
 .desktop {
-  background: #fff;
+  /* background: #fff; */
   max-width: 60%;
   margin-left: 31%;
 }

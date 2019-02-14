@@ -7,7 +7,7 @@
       {{userName}}
     </div>
     <div class="links">
-      <router-link to="/">
+      <router-link to="/home">
         <span>Home</span>
       </router-link>
       <router-link to="/">

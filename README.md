@@ -20,5 +20,6 @@ As a part of my learning, I used several technologies that are new for me.
 -   Vuetify
 -   Express
 -   Node
+-   Passport for authentication
 -   MongoDB
 -   mLab

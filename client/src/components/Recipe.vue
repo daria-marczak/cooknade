@@ -7,9 +7,9 @@
           <h2 v-html="recipe.title"/>
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
-        <div class="favorite">
+        <button class="favorite">
           <v-icon class="icon">favorite_border</v-icon>
-        </div>
+        </button>
       </div>
       <v-chip v-for="category in recipe.category" v-bind:key="category">{{category}}</v-chip>
       <p class="description" v-html="recipe.description"/>
@@ -34,7 +34,11 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Recipe",
-  methods: mapActions(["getSingleRecipe"]),
+  methods: {
+    // on btton click, send a call to api with both recipeId, as well as
+    // userId
+    ...mapActions(["getSingleRecipe"])
+  },
   computed: mapGetters(["recipe"]),
   beforeMount() {
     const { recipeId } = this.$route.params;
