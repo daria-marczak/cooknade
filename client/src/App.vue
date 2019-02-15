@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Drawer class="drawer"/>
+    <Sidebar class="drawer"/>
     <v-container fluid grid-list-md class="desktop">
       <router-view :key="$route.fullPath"></router-view>
     </v-container>
@@ -13,7 +13,7 @@ import { mapGetters, mapActions } from "vuex";
 
 import Header from "./common/Header";
 import Footer from "./common/Footer";
-import Drawer from "./common/Drawer";
+import Sidebar from "./common/Sidebar";
 import Login from "./components/Login";
 import Category from "./components/Category";
 
@@ -22,7 +22,7 @@ export default {
   components: {
     Header,
     Footer,
-    Drawer,
+    Sidebar,
     Login,
     Category
   },

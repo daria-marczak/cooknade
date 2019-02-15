@@ -2,7 +2,7 @@
   <div class="navigation">
     <div class="user">
       <div class="circle">
-        <v-icon>person</v-icon>
+        <v-icon class="icon">person</v-icon>
       </div>
       {{userName}}
     </div>
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "Drawer",
+  name: "Sidebar",
   data() {
     return {
       userName: "daria_marczak"
@@ -39,7 +39,7 @@ export default {
   z-index: 1;
   top: 0;
   left: 0;
-  background: #fff;
+  background: #fb3453;
   font-family: "Raleway", sans-serif;
   padding: 1em 1em;
 }
@@ -48,18 +48,23 @@ export default {
   display: flex;
   align-items: center;
   font-weight: 500;
-  color: #fb3453;
+  color: #fff;
+}
+
+.icon {
+  color: #fff;
 }
 
 .circle {
   width: 2.5em;
   height: 2.5em;
-  border: 0.08em solid #fb3453;
+  border: 0.08em solid #fff;
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 0.5em;
+  color: #fff;
 }
 
 .links {
@@ -71,6 +76,7 @@ export default {
 a {
   text-decoration: none;
   text-transform: uppercase;
+  color: #fff;
   padding: 1em 0;
   border-bottom: 0.02em solid rgb(228, 228, 228);
   font-weight: 500;
