@@ -13,7 +13,7 @@
       <router-link to="/">
         <span>Calendar</span>
       </router-link>
-      <router-link to="/">
+      <router-link to="/favorites">
         <span>Favorites</span>
       </router-link>
     </div>

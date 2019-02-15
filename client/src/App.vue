@@ -14,17 +14,13 @@ import { mapGetters, mapActions } from "vuex";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Sidebar from "./common/Sidebar";
-import Login from "./components/Login";
-import Category from "./components/Category";
 
 export default {
   name: "App",
   components: {
     Header,
     Footer,
-    Sidebar,
-    Login,
-    Category
+    Sidebar
   },
   computed: mapGetters(["recipes", "categories", "isLoggedIn"]),
   data() {
