@@ -5,7 +5,6 @@ const User = require('../models/User');
 
 router.put('/:userId/favorites', (req, res) => {
 	const { recipeId } = req.body;
-	console.log(req.params);
 
 	User.findByIdAndUpdate(
 		{
@@ -15,18 +14,16 @@ router.put('/:userId/favorites', (req, res) => {
 	).then(() => {
 		User.findById({
 			_id: req.params.userId,
-		}).then(user => res.send(user));
+		}).then(() => res.send(res.status));
 	});
 });
 
 router.get('/:userId/favorites', (req, res) => {
-	console.log(req.params.userId);
-
 	User.findById({
 		_id: req.params.userId,
 	}).then(user => {
 		res.send(user);
 	});
 });
-// route for adding favorites to a user schema, this will be an array
+
 module.exports = router;

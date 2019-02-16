@@ -10,7 +10,7 @@ const actions = {
 
 		axios
 			.put(url, { recipeId: payload.recipeId })
-			.then(res => console.log(res))
+			.then(res => res)
 			.catch(error => console.error(error));
 	},
 };

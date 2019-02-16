@@ -7,7 +7,7 @@
           <h2 v-html="recipe.title"/>
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
-        <button class="favorite" v-on:click="likeIt">
+        <button v-bind:class="[toggleClass]" v-on:click="likeIt">
           <v-icon class="icon">favorite_border</v-icon>
         </button>
       </div>
@@ -36,16 +36,23 @@ export default {
   name: "Recipe",
   data() {
     return {
-      recipeId: ""
+      recipeId: "",
+      isFavorite: null
     };
   },
   methods: {
     likeIt() {
       this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
+      this.isFavorite = !this.isFavorite;
     },
     ...mapActions(["getSingleRecipe", "addToFavorites"])
   },
-  computed: mapGetters(["recipe", "userId"]),
+  computed: {
+    toggleClass() {
+      return this.isFavorite ? "active" : "inactive";
+    },
+    ...mapGetters(["recipe", "userId"])
+  },
   beforeMount() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
@@ -90,15 +97,19 @@ h2 {
   display: flex;
 }
 
-.favorite {
+button {
   width: 3em;
   margin-left: auto;
   height: 3em;
   border-radius: 100%;
-  border: 0.08em solid #fb3453;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.3s ease-in;
+}
+
+.active {
+  border: 0.18em solid #fb3453;
 }
 
 .icon {

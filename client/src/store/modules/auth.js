@@ -17,7 +17,7 @@ const actions = {
 const mutations = {
 	authenticate: ({ commit }) => {
 		axios.get(url).then(response => {
-			state.userId = response.data.googleId;
+			state.userId = response.data._id;
 			state.userName = response.data.name;
 
 			const user = { userId: state.userId, userName: state.userName };
