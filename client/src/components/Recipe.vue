@@ -36,7 +36,7 @@ export default {
   name: "Recipe",
   methods: {
     likeIt() {
-      console.log(this.userId, this.recipe.recipeId);
+      console.log(this.userId, this.recipe);
       this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
     },
     ...mapActions(["getSingleRecipe", "addToFavorites"])
