@@ -23,14 +23,15 @@ export default {
     Category
   },
   computed: {
-    ...mapGetters(["recipes", "categories", "isLoggedIn"])
+    ...mapGetters(["recipes", "categories", "isLoggedIn", "userId"])
   },
   methods: {
-    ...mapActions(["getRecipes", "finishAuth"])
+    ...mapActions(["getRecipes", "finishAuth", "getFavorites"])
   },
   created() {
     this.finishAuth();
     this.getRecipes();
+    this.getFavorites(this.userId);
   }
 };
 </script>

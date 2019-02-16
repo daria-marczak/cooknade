@@ -37,26 +37,30 @@ export default {
   data() {
     return {
       recipeId: "",
-      isFavorite: null
+      isFav: null
     };
   },
   methods: {
     likeIt() {
       this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
-      this.isFavorite = !this.isFavorite;
+      this.isFav = !this.isFav;
+    },
+    checkIfFavorite() {
+      this.isFav = this.isFavorite(this.recipeId);
+      return this.isFavorite(this.recipeId);
     },
     ...mapActions(["getSingleRecipe", "addToFavorites"])
   },
   computed: {
     toggleClass() {
-      return this.isFavorite ? "active" : "inactive";
+      return this.isFav ? "active" : "inactive";
     },
-    ...mapGetters(["recipe", "userId"])
+    ...mapGetters(["recipe", "userId", "isFavorite"])
   },
   beforeMount() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
-
+    this.checkIfFavorite();
     this.recipeId = recipeId;
   }
 };

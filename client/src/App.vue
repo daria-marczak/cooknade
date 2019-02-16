@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Sidebar from "./common/Sidebar";
@@ -22,7 +20,6 @@ export default {
     Footer,
     Sidebar
   },
-  computed: mapGetters(["recipes", "categories", "isLoggedIn"]),
   data() {
     return {
       isMobile: false
@@ -40,11 +37,7 @@ export default {
     },
     toggleMobile() {
       this.isMobile ? "" : "desktop";
-    },
-    ...mapActions(["getRecipes"])
-  },
-  created() {
-    this.getRecipes();
+    }
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.getWindowWidth);
