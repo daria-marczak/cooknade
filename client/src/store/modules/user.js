@@ -5,16 +5,17 @@ const state = {
 };
 
 const actions = {
-	addToFavorites: ({ commit }, ids) => {
-		commit('addToFavorites', ids);
+	addToFavorites: ({ commit }, payload) => {
+		const url = `http://localhost:4000/user/${payload.userId}/favorites`;
+
+		axios
+			.put(url, { recipeId: payload.recipeId })
+			.then(res => console.log(res))
+			.catch(error => console.error(error));
 	},
 };
 
-const mutations = {
-	addToFavorites: ids => {
-		console.log(ids);
-	},
-};
+const mutations = {};
 
 const getters = {};
 

@@ -34,9 +34,13 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Recipe",
+  data() {
+    return {
+      recipeId: ""
+    };
+  },
   methods: {
     likeIt() {
-      console.log(this.userId, this.recipe);
       this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
     },
     ...mapActions(["getSingleRecipe", "addToFavorites"])
@@ -45,6 +49,8 @@ export default {
   beforeMount() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
+
+    this.recipeId = recipeId;
   }
 };
 </script>
