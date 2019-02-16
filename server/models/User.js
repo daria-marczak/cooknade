@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-	googleID: String,
+	googleId: String,
 	name: String,
 	favorites: [{ type: String, default: [] }],
 });

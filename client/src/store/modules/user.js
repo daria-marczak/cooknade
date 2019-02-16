@@ -1,17 +1,18 @@
 import axios from 'axios';
 
-const state = {};
+const state = {
+	favorites: [],
+};
 
 const actions = {
 	addToFavorites: ({ commit }, ids) => {
-		console.log(ids);
-		commit('addToFavorites', userId, recipeId);
+		commit('addToFavorites', ids);
 	},
 };
 
 const mutations = {
-	addToFavorites: (userId, recipeId) => {
-		console.log(userId, recipeId);
+	addToFavorites: ids => {
+		console.log(ids);
 	},
 };
 
