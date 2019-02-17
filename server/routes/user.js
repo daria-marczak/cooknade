@@ -26,4 +26,14 @@ router.get('/:userId/favorites', (req, res) => {
 	});
 });
 
+router.delete('/:userId/favorites', (req, res) => {
+	const { recipeId } = req.body;
+
+	User.findByIdAndUpdate({ _id: req.params.userId }, { $pull: { favorites: recipeId } }).then(() => {
+		User.findById({
+			_id: req.params.userId,
+		}).then(() => res.send(res.status));
+	});
+});
+
 module.exports = router;

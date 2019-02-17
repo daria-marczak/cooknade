@@ -46,7 +46,6 @@ export default {
       this.isFav = !this.isFav;
     },
     checkIfFavorite() {
-      this.isFav = this.isFavorite(this.recipeId);
       return this.isFavorite(this.recipeId);
     },
     ...mapActions(["getSingleRecipe", "addToFavorites"])
@@ -60,8 +59,10 @@ export default {
   beforeMount() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
-    this.checkIfFavorite();
     this.recipeId = recipeId;
+  },
+  updated() {
+    this.checkIfFavorite();
   }
 };
 </script>
