@@ -22,11 +22,29 @@ export default {
   components: {
     FavoriteCard
   },
+  data() {
+    return {
+      previousFavsIds: []
+    };
+  },
   computed: mapGetters(["favs", "userFavorites", "userId"]),
   methods: mapActions(["fillFavsIntoComponent", "getFavorites"]),
   created() {
     this.getFavorites(this.userId);
+    if (this.favs) {
+      this.favs.forEach(favoriteId => {
+        this.previousFavsIds.push(favoriteId);
+      });
+    }
+
     if (this.favs && this.userFavorites.length === 0) {
+      this.favs.forEach(favoriteId => {
+        this.fillFavsIntoComponent(favoriteId);
+      });
+    }
+  },
+  updated() {
+    if (JSON.stringify(this.favs) !== JSON.stringify(this.previousFavsIds)) {
       this.favs.forEach(favoriteId => {
         this.fillFavsIntoComponent(favoriteId);
       });
