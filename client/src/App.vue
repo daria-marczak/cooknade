@@ -47,7 +47,6 @@ export default {
   created() {
     this.getRecipes();
     this.getFavorites(this.userId);
-    console.log("getting everythings");
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.getWindowWidth);

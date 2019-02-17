@@ -7,7 +7,7 @@
           <h2 v-html="recipe.title"/>
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
-        <button v-bind:class="[toggleClass]" v-on:click="likeIt">
+        <button v-bind:class="[toggleClass]" v-on:click="toggleLike">
           <v-icon class="icon">favorite_border</v-icon>
         </button>
       </div>
@@ -41,20 +41,26 @@ export default {
     };
   },
   methods: {
-    likeIt() {
-      this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
-      this.isFav = !this.isFav;
+    toggleLike() {
+      if (!this.isFav) {
+        this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
+        this.isFav = true;
+      } else {
+        this.deleteFavorite({ userId: this.userId, recipeId: this.recipeId });
+        this.isFav = false;
+      }
     },
     checkIfFavorite() {
-      return this.isFavorite(this.recipeId);
+      this.isFav = this.getFavorites.includes(this.recipeId);
+      return this.isFav;
     },
-    ...mapActions(["getSingleRecipe", "addToFavorites"])
+    ...mapActions(["getSingleRecipe", "addToFavorites", "deleteFavorite"])
   },
   computed: {
     toggleClass() {
       return this.isFav ? "active" : "inactive";
     },
-    ...mapGetters(["recipe", "userId", "isFavorite"])
+    ...mapGetters(["recipe", "userId", "getFavorites"])
   },
   beforeMount() {
     const { recipeId } = this.$route.params;

@@ -15,6 +15,13 @@ const actions = {
 			.then(res => res)
 			.catch(error => console.error(error));
 	},
+	deleteFavorite: ({ commit }, payload) => {
+		const url = `${baseUrl}${payload.userId}/favorites`;
+		axios
+			.delete(url, { recipeId: payload.recipeId })
+			.then(res => res)
+			.catch(error => console.error(error));
+	},
 	getFavorites: ({ commit }, userId) => {
 		commit('allFavorites', userId);
 	},
@@ -25,16 +32,13 @@ const mutations = {
 		const url = `${baseUrl}${userId}/favorites`;
 
 		axios.get(url).then(res => {
-			state.favorites = res.data;
+			state.favorites = res.data.favorites;
 		});
 	},
 };
 
 const getters = {
-	isFavorite: state => recipeId => {
-		console.log(state.favorites.favorites.includes(recipeId));
-		// return state.favorites.favorites.includes(recipeId);
-	},
+	getFavorites: state => state.favorites,
 };
 
 export default { state, actions, mutations, getters };
