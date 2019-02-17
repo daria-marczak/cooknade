@@ -18,7 +18,7 @@ const actions = {
 	deleteFavorite: ({ commit }, payload) => {
 		const url = `${baseUrl}${payload.userId}/favorites`;
 		axios
-			.delete(url, { recipeId: payload.recipeId })
+			.delete(url, { data: { recipeId: payload.recipeId } })
 			.then(res => res)
 			.catch(error => console.error(error));
 	},
