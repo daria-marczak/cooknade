@@ -33,7 +33,7 @@ const mutations = {
 const getters = {
 	isFavorite: state => recipeId => {
 		console.log(state.favorites.favorites.includes(recipeId));
-		return state.favorites.favorites.includes(recipeId);
+		// return state.favorites.favorites.includes(recipeId);
 	},
 };
 

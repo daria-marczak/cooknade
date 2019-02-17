@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import Sidebar from "./common/Sidebar";
@@ -31,13 +32,22 @@ export default {
       this.getWindowWidth();
     });
   },
+  computed: {
+    ...mapGetters(["recipes", "categories", "isLoggedIn", "userId"])
+  },
   methods: {
     getWindowWidth(event) {
       this.isMobile = document.documentElement.clientWidth <= 880;
     },
     toggleMobile() {
       this.isMobile ? "" : "desktop";
-    }
+    },
+    ...mapActions(["getRecipes", "finishAuth", "getFavorites"])
+  },
+  created() {
+    this.getRecipes();
+    this.getFavorites(this.userId);
+    console.log("getting everythings");
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.getWindowWidth);

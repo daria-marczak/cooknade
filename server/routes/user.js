@@ -10,7 +10,7 @@ router.put('/:userId/favorites', (req, res) => {
 		{
 			_id: req.params.userId,
 		},
-		{ $push: { favorites: recipeId } }
+		{ $addToSet: { favorites: recipeId } }
 	).then(() => {
 		User.findById({
 			_id: req.params.userId,
