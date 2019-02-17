@@ -51,7 +51,7 @@ export default {
       }
     },
     checkIfFavorite() {
-      this.isFav = this.getFavorites.includes(this.recipeId);
+      this.isFav = this.favs.includes(this.recipeId);
       return this.isFav;
     },
     ...mapActions(["getSingleRecipe", "addToFavorites", "deleteFavorite"])
@@ -60,7 +60,7 @@ export default {
     toggleClass() {
       return this.isFav ? "active" : "inactive";
     },
-    ...mapGetters(["recipe", "userId", "getFavorites"])
+    ...mapGetters(["recipe", "userId", "favs"])
   },
   beforeMount() {
     const { recipeId } = this.$route.params;

@@ -38,7 +38,7 @@ const mutations = {
 };
 
 const getters = {
-	getFavorites: state => state.favorites,
+	favs: state => state.favorites,
 };
 
 export default { state, actions, mutations, getters };

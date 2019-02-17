@@ -22,4 +22,5 @@ As a part of my learning, I used several technologies that are new for me.
 -   Node
 -   Passport for authentication
 -   MongoDB
+-   Mongoose
 -   mLab

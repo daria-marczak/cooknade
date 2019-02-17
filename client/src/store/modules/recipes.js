@@ -6,6 +6,7 @@ const state = {
 	recipes: [],
 	categories: [],
 	recipe: {},
+	userFavorites: [],
 };
 
 const mutations = {
@@ -20,6 +21,16 @@ const mutations = {
 			.get(`${url}/${recipeId}`)
 			.then(response => {
 				state.recipe = response.data;
+			})
+			.catch(error => console.error(error));
+	},
+	fillFavorites: (state, recipeId) => {
+		console.log(recipeId);
+		axios
+			.get(`${url}/${recipeId}`)
+			.then(response => {
+				state.userFavorites.push(response.data);
+				console.log(state.userFavorites);
 			})
 			.catch(error => console.error(error));
 	},
@@ -41,6 +52,7 @@ const getters = {
 		return (state.categories = [...new Set(recipeCategories)]);
 	},
 	recipe: state => state.recipe,
+	userFavorites: state => state.userFavorites,
 };
 
 export default { state, mutations, actions, getters };
