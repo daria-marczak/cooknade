@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const UserSchema = Schema({
+	_id: Schema.Types.ObjectId,
 	googleId: String,
 	name: String,
-	favorites: [{ type: String, default: [] }],
+	favorites: [{ type: Schema.Types.ObjectId, default: [], ref: 'Recipe' }],
 });
 
 const User = mongoose.model('user', UserSchema);

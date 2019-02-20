@@ -38,6 +38,7 @@ const RecipeSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	fans: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 
 const Recipe = mongoose.model('recipe', RecipeSchema);
