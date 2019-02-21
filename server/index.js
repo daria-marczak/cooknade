@@ -43,7 +43,7 @@ app.listen(process.env.port || 4000, function() {
 app.use(express.static('client'));
 
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+	res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 mongoose.connect(config.url);
