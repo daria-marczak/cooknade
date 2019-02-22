@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Drawer class="drawer"/>
+    <Sidebar class="drawer"/>
     <v-container fluid grid-list-md class="desktop">
       <router-view :key="$route.fullPath"></router-view>
     </v-container>
@@ -9,24 +9,18 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-
+import { mapActions, mapGetters } from "vuex";
 import Header from "./common/Header";
 import Footer from "./common/Footer";
-import Drawer from "./common/Drawer";
-import Login from "./components/Login";
-import Category from "./components/Category";
+import Sidebar from "./common/Sidebar";
 
 export default {
   name: "App",
   components: {
     Header,
     Footer,
-    Drawer,
-    Login,
-    Category
+    Sidebar
   },
-  computed: mapGetters(["recipes", "categories", "isLoggedIn"]),
   data() {
     return {
       isMobile: false
@@ -38,6 +32,9 @@ export default {
       this.getWindowWidth();
     });
   },
+  computed: {
+    ...mapGetters(["recipes", "categories", "isLoggedIn", "userId"])
+  },
   methods: {
     getWindowWidth(event) {
       this.isMobile = document.documentElement.clientWidth <= 880;
@@ -45,10 +42,11 @@ export default {
     toggleMobile() {
       this.isMobile ? "" : "desktop";
     },
-    ...mapActions(["getRecipes"])
+    ...mapActions(["getRecipes", "finishAuth", "getFavorites"])
   },
   created() {
     this.getRecipes();
+    this.getFavorites(this.userId);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.getWindowWidth);
@@ -66,10 +64,11 @@ export default {
 
 .app {
   display: flex !important;
+  height: 100%;
 }
 
 .desktop {
-  background: #fff;
+  /* background: #fff; */
   max-width: 60%;
   margin-left: 31%;
 }

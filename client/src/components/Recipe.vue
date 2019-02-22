@@ -7,9 +7,9 @@
           <h2 v-html="recipe.title"/>
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
-        <div class="favorite">
+        <button v-bind:class="[toggleClass]" v-on:click="toggleLike">
           <v-icon class="icon">favorite_border</v-icon>
-        </div>
+        </button>
       </div>
       <v-chip v-for="category in recipe.category" v-bind:key="category">{{category}}</v-chip>
       <p class="description" v-html="recipe.description"/>
@@ -31,14 +31,44 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { store } from "../store/store";
 
 export default {
   name: "Recipe",
-  methods: mapActions(["getSingleRecipe"]),
-  computed: mapGetters(["recipe"]),
-  beforeMount() {
+  data() {
+    return {
+      recipeId: "",
+      isFav: null
+    };
+  },
+  methods: {
+    toggleLike() {
+      if (!this.isFav) {
+        this.addToFavorites({ userId: this.userId, recipeId: this.recipeId });
+        this.isFav = true;
+      } else {
+        this.deleteFavorite({ userId: this.userId, recipeId: this.recipeId });
+        this.isFav = false;
+      }
+    },
+    checkIfFavorite() {
+      this.isFav = this.userFavorites.some(
+        recipe => recipe._id === this.recipeId
+      );
+    },
+    ...mapActions(["getSingleRecipe", "addToFavorites", "deleteFavorite"])
+  },
+  computed: {
+    toggleClass() {
+      return this.isFav ? "active" : "inactive";
+    },
+    ...mapGetters(["recipe", "userId", "userFavorites"])
+  },
+  created() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
+    this.recipeId = recipeId;
+    this.checkIfFavorite();
   }
 };
 </script>
@@ -78,15 +108,19 @@ h2 {
   display: flex;
 }
 
-.favorite {
+button {
   width: 3em;
   margin-left: auto;
   height: 3em;
   border-radius: 100%;
-  border: 0.08em solid #fb3453;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.3s ease-in;
+}
+
+.active {
+  border: 0.18em solid #fb3453;
 }
 
 .icon {

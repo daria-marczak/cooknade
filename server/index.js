@@ -26,8 +26,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api', require('./routes/api'));
+app.use('/api', require('./routes/recipes'));
 app.use('/auth', require('./routes/auth'));
+app.use('/user', require('./routes/user'));
 
 app.use(history());
 
@@ -42,7 +43,7 @@ app.listen(process.env.port || 4000, function() {
 app.use(express.static('client'));
 
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+	res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 mongoose.connect(config.url);

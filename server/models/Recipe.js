@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const RecipeSchema = new Schema({
 	title: {
@@ -38,8 +38,9 @@ const RecipeSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	fans: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
-const Recipe = mongoose.model('recipe', RecipeSchema);
+const Recipe = mongoose.model('Recipe', RecipeSchema);
 
 module.exports = Recipe;

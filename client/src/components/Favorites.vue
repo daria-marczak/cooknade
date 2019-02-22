@@ -1,0 +1,55 @@
+<template>
+  <div class="noFavorites" v-if="userFavorites.length === 0">
+    <p>You have not added any favorites</p>
+  </div>
+  <div class="container" v-else>
+    <h2>Your favorites</h2>
+    <FavoriteCard
+      class="card"
+      v-for="favorite in userFavorites"
+      v-bind:key="favorite._id"
+      v-bind:favorite="favorite"
+    />
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+import FavoriteCard from "../common/FavoriteCard";
+
+export default {
+  name: "Favorites",
+  components: {
+    FavoriteCard
+  },
+  computed: {
+    ...mapGetters(["userFavorites"])
+  },
+  methods: mapActions(["getFavorites"]),
+  created() {
+    const currentIds = this.userFavorites.map(favorite => favorite._id);
+  }
+};
+</script>
+
+<style scoped>
+.container {
+  margin: 2em;
+}
+
+h2 {
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+  color: #fb3453;
+  margin-bottom: 1em;
+}
+
+.noFavorites {
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+  font-size: 2em;
+  margin-top: 50%;
+  text-align: center;
+}
+</style>

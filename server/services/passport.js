@@ -3,8 +3,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const config = require('../config');
 const mongoose = require('mongoose');
 
-const User = mongoose.model('user');
-
+const User = mongoose.model('User');
+const UserController = '../controllers/users.js';
 passport.serializeUser((user, done) => {
 	done(null, user.id);
 });
@@ -24,7 +24,7 @@ passport.use(
 			proxy: true,
 		},
 		(accessToken, refreshToken, profile, done) => {
-			User.findOne({ googleID: profile.id })
+			User.findOne({ googleId: profile.id })
 				.then(currentUser => {
 					if (currentUser) {
 						return done(null, currentUser);

@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const state = {
 	isLoggedIn: null,
-	userId: '',
-	userName: '',
+	userId: localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')).userId : '',
+	userName: localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')).userName : '',
 };
 
 const url = '/auth/current_user';
@@ -19,6 +19,10 @@ const mutations = {
 		axios.get(url).then(response => {
 			state.userId = response.data._id;
 			state.userName = response.data.name;
+
+			const user = { userId: state.userId, userName: state.userName };
+
+			window.localStorage.setItem('userData', JSON.stringify(user));
 		});
 	},
 };

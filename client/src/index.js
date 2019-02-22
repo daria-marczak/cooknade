@@ -7,6 +7,7 @@ import App from './App.vue';
 import Home from './components/Home.vue';
 import Login from './components/Login.vue';
 import Recipe from './components/Recipe.vue';
+import Favorites from './components/Favorites.vue';
 import '../static/favicon.ico';
 
 Vue.use(Vuetify, {
@@ -25,6 +26,7 @@ const router = new VueRouter({
 		{ path: '/', name: 'Login', component: Login },
 		{ path: '/home', name: 'Home', component: Home },
 		{ path: '/recipes/:recipeId', name: 'Recipe', component: Recipe },
+		{ path: '/favorites', name: 'Favorites', component: Favorites },
 	],
 });
 
