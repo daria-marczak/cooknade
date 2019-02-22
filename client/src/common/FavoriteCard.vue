@@ -50,4 +50,12 @@ a {
   margin-right: 0.5em;
   margin-bottom: 0.8em;
 }
+
+@media screen and (min-width: 881px) {
+  img {
+    min-width: 10em;
+    min-height: 10em;
+    border-radius: 25px;
+  }
+}
 </style>
