@@ -120,7 +120,7 @@ button {
 }
 
 .active {
-  border: 0.18em solid #fb3453;
+  border: 0.16em solid #fb3453;
 }
 
 .icon {

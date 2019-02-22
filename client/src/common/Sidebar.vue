@@ -1,11 +1,13 @@
 <template>
   <div class="navigation">
-    <div class="user">
-      <div class="circle">
-        <v-icon class="icon">person</v-icon>
+    <router-link to="/profile">
+      <div class="user">
+        <div class="circle">
+          <v-icon class="icon">person</v-icon>
+        </div>
+        {{userName}}
       </div>
-      {{userName}}
-    </div>
+    </router-link>
     <div class="links">
       <router-link to="/home">
         <span>Home</span>
