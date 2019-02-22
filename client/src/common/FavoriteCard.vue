@@ -57,5 +57,9 @@ a {
     min-height: 10em;
     border-radius: 25px;
   }
+
+  .card {
+    align-items: flex-start;
+  }
 }
 </style>
