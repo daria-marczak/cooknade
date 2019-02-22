@@ -23,10 +23,12 @@
       </v-btn>
     </router-link>
 
-    <v-btn color="secondary" flat value="profile">
-      <span>Profile</span>
-      <v-icon>person</v-icon>
-    </v-btn>
+    <router-link to="/profile">
+      <v-btn color="secondary" flat value="profile">
+        <span>Profile</span>
+        <v-icon>person</v-icon>
+      </v-btn>
+    </router-link>
   </v-bottom-nav>
 </template>
 
