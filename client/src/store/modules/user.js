@@ -1,26 +1,24 @@
 import axios from 'axios';
 
 const baseUrl = `http://localhost:4000/user/`;
+const url = 'http://localhost:4000/api/recipes';
 
 const state = {
 	favorites: [],
+	userFavorites: [],
 };
 
 const actions = {
 	addToFavorites: ({ commit }, payload) => {
-		const url = `${baseUrl}${payload.userId}/favorites`;
-
-		axios
-			.put(url, { recipeId: payload.recipeId })
-			.then(res => res)
-			.catch(error => console.error(error));
+		commit('addFavorite', payload);
 	},
 	deleteFavorite: ({ commit }, payload) => {
 		const url = `${baseUrl}${payload.userId}/favorites`;
 		axios
 			.delete(url, { data: { recipeId: payload.recipeId } })
-			.then(res => res)
+			.then(response => response)
 			.catch(error => console.error(error));
+		commit('allFavorites', payload.userId);
 	},
 	getFavorites: ({ commit }, userId) => {
 		commit('allFavorites', userId);
@@ -28,6 +26,14 @@ const actions = {
 };
 
 const mutations = {
+	addFavorite: (state, payload) => {
+		const url = `${baseUrl}${payload.userId}/favorites`;
+
+		axios
+			.put(url, { recipeId: payload.recipeId })
+			.then(response => state.userFavorites.push(response.data))
+			.catch(error => console.error(error));
+	},
 	allFavorites: (state, userId) => {
 		const url = `${baseUrl}${userId}/favorites`;
 
@@ -38,7 +44,7 @@ const mutations = {
 };
 
 const getters = {
-	favs: state => state.favorites,
+	userFavorites: state => state.favorites && state.favorites,
 };
 
 export default { state, actions, mutations, getters };

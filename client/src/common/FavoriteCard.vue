@@ -4,16 +4,31 @@
       <img v-bind:src="favorite.imgUrl" class="img">
       <div class="description">
         <h3>{{favorite.title}}</h3>
-        <p>{{favorite.description}}</p>
+        <p>{{descriptionLength}}</p>
       </div>
     </div>
   </router-link>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "FavoriteCard",
-  props: ["favorite"]
+  props: ["favorite"],
+  computed: {
+    descriptionLength() {
+      if (this.favorite.description.length > 150) {
+        return this.favorite.description
+          .split(" ")
+          .slice(0, 20)
+          .join(" ")
+          .concat("...");
+      } else {
+        return this.favorite.description;
+      }
+    }
+  }
 };
 </script>
 

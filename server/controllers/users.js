@@ -1,4 +1,6 @@
-const User = mongoose.model('user');
+const mongoose = require('mongoose');
+
+const User = mongoose.model('User');
 
 exports.add_to_favorite = (req, res) => {
 	const { recipeId } = req.body;
@@ -15,14 +17,6 @@ exports.add_to_favorite = (req, res) => {
 	});
 };
 
-exports.get_favorites = (req, res) => {
-	User.findOne({
-		_id: req.params.userId,
-	}).then(user => {
-		res.send(user.favorites);
-	});
-};
-
 exports.delete_favorite = (req, res) => {
 	const { recipeId } = req.body;
 
@@ -31,4 +25,14 @@ exports.delete_favorite = (req, res) => {
 			_id: req.params.userId,
 		}).then(() => res.send(res.status));
 	});
+};
+
+exports.get_favorites = (req, res) => {
+	User.findById({
+		_id: req.params.userId,
+	})
+		.populate('favorites')
+		.exec((err, recipe) => {
+			res.send(recipe);
+		});
 };

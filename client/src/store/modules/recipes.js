@@ -6,7 +6,6 @@ const state = {
 	recipes: [],
 	categories: [],
 	recipe: {},
-	userFavorites: [],
 };
 
 const mutations = {
@@ -24,14 +23,6 @@ const mutations = {
 			})
 			.catch(error => console.error(error));
 	},
-	fillFavorites: (state, recipeId) => {
-		axios
-			.get(`${url}/${recipeId}`)
-			.then(response => {
-				state.userFavorites.push(response.data);
-			})
-			.catch(error => console.error(error));
-	},
 };
 
 const actions = {
@@ -40,9 +31,6 @@ const actions = {
 	},
 	getSingleRecipe: ({ commit }, recipeId) => {
 		commit('getSingleRecipe', recipeId);
-	},
-	fillFavsIntoComponent: ({ commit }, recipeId) => {
-		commit('fillFavorites', recipeId);
 	},
 };
 
@@ -53,7 +41,6 @@ const getters = {
 		return (state.categories = [...new Set(recipeCategories)]);
 	},
 	recipe: state => state.recipe,
-	userFavorites: state => [...new Set(state.userFavorites)],
 };
 
 export default { state, mutations, actions, getters };

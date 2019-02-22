@@ -3,6 +3,7 @@
     <p>You have not added any favorites</p>
   </div>
   <div class="container" v-else>
+    <h2>Your favorites</h2>
     <FavoriteCard
       class="card"
       v-for="favorite in userFavorites"
@@ -22,33 +23,12 @@ export default {
   components: {
     FavoriteCard
   },
-  data() {
-    return {
-      previousFavsIds: []
-    };
+  computed: {
+    ...mapGetters(["userFavorites"])
   },
-  computed: mapGetters(["favs", "userFavorites", "userId"]),
-  methods: mapActions(["fillFavsIntoComponent", "getFavorites"]),
+  methods: mapActions(["getFavorites"]),
   created() {
-    this.getFavorites(this.userId);
-    if (this.favs) {
-      this.favs.forEach(favoriteId => {
-        this.previousFavsIds.push(favoriteId);
-      });
-    }
-
-    if (this.favs && this.userFavorites.length === 0) {
-      this.favs.forEach(favoriteId => {
-        this.fillFavsIntoComponent(favoriteId);
-      });
-    }
-  },
-  updated() {
-    if (JSON.stringify(this.favs) !== JSON.stringify(this.previousFavsIds)) {
-      this.favs.forEach(favoriteId => {
-        this.fillFavsIntoComponent(favoriteId);
-      });
-    }
+    const currentIds = this.userFavorites.map(favorite => favorite._id);
   }
 };
 </script>
@@ -56,6 +36,13 @@ export default {
 <style scoped>
 .container {
   margin: 2em;
+}
+
+h2 {
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+  color: #fb3453;
+  margin-bottom: 1em;
 }
 
 .noFavorites {

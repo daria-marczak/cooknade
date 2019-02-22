@@ -38,9 +38,9 @@ const RecipeSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	fans: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+	fans: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
-const Recipe = mongoose.model('recipe', RecipeSchema);
+const Recipe = mongoose.model('Recipe', RecipeSchema);
 
 module.exports = Recipe;

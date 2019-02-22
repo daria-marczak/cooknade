@@ -14,11 +14,10 @@ exports.get_one_recipe = (req, res) => {
 	Recipe.findById({
 		_id: req.params.id,
 	})
-		.then(recipe => {
-			res.send(recipe);
-		})
-		.catch(error => {
-			res.status(500).json({ error });
+		.populate('fans')
+		.exec((err, user) => {
+			if (err) res.send(err);
+			res.send(user);
 		});
 };
 

@@ -31,6 +31,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { store } from "../store/store";
 
 export default {
   name: "Recipe",
@@ -51,8 +52,9 @@ export default {
       }
     },
     checkIfFavorite() {
-      this.isFav = this.favs.includes(this.recipeId);
-      return this.isFav;
+      this.isFav = this.userFavorites.some(
+        recipe => recipe._id === this.recipeId
+      );
     },
     ...mapActions(["getSingleRecipe", "addToFavorites", "deleteFavorite"])
   },
@@ -60,14 +62,12 @@ export default {
     toggleClass() {
       return this.isFav ? "active" : "inactive";
     },
-    ...mapGetters(["recipe", "userId", "favs"])
+    ...mapGetters(["recipe", "userId", "userFavorites"])
   },
-  beforeMount() {
+  created() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
     this.recipeId = recipeId;
-  },
-  updated() {
     this.checkIfFavorite();
   }
 };
