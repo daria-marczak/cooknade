@@ -100,7 +100,7 @@ export default {
             value.length > 10 ||
             "You probably want to let others know what's so great about this recipe"
         ],
-        categories: [value => value.length > 10 || "Categories are useful"],
+        categories: [value => value.length > 5 || "Categories are useful"],
         time: [value => value !== 0 || "Cooking takes time!"],
         preparation: [
           value => value.length > 150 || "People should know how to prepare it!"
@@ -132,16 +132,17 @@ export default {
         ingredients: this.form.ingredients.split("\n"),
         author: this.userId,
         title: this.form.title,
-        imageUrl: this.form.image,
+        imgUrl: this.form.image,
         description: this.form.description,
-        timeOfPrepataion: this.form.time,
+        timeOfPreparation: this.form.time.toString().concat(" min"),
         preparation: this.form.preparation,
         sourceName: this.form.sourceName,
         sourceUrl: this.form.sourceUrl
       };
-      console.log(data);
+
+      this.addRecipe(data);
     },
-    ...mapActions([""])
+    ...mapActions(["addRecipe"])
   },
   computed: {
     isFormValid() {
