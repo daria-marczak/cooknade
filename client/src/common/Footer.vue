@@ -12,9 +12,11 @@
       <v-icon>calendar_today</v-icon>
     </v-btn>
 
-    <v-btn fab flat color="secondary">
-      <v-icon>add</v-icon>
-    </v-btn>
+    <router-link to="/create">
+      <button class="addNew" role="button" aria-label="button">
+        <v-icon dark>add</v-icon>
+      </button>
+    </router-link>
 
     <router-link to="/favorites">
       <v-btn color="secondary" flat value="favorites">
@@ -45,5 +47,14 @@ v-bottom-nav {
 
 a {
   text-decoration: none;
+  text-align: center;
+}
+
+.addNew {
+  background: #fb3453 !important;
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 100%;
+  box-shadow: 0 0 10px #999;
 }
 </style>

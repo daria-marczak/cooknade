@@ -1,7 +1,7 @@
 <template>
   <router-link v-bind:to="'/recipes/' + id">
     <div class="card">
-      <v-img v-bind:src="image" class="image" aspect-ratio="1"></v-img>
+      <v-img v-bind:src="image" class="image" v-bind:alt="title" aspect-ratio="1"></v-img>
       <h2>{{title}}</h2>
     </div>
   </router-link>

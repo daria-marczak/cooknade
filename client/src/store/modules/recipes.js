@@ -23,6 +23,12 @@ const mutations = {
 			})
 			.catch(error => console.error(error));
 	},
+	addNewRecipe: (state, payload) => {
+		axios
+			.post(url, payload)
+			.then(response => console.log(response))
+			.catch(error => console.error(error));
+	},
 };
 
 const actions = {
@@ -31,6 +37,9 @@ const actions = {
 	},
 	getSingleRecipe: ({ commit }, recipeId) => {
 		commit('getSingleRecipe', recipeId);
+	},
+	addRecipe: ({ commit }, payload) => {
+		commit('addNewRecipe', payload);
 	},
 };
 

@@ -1,7 +1,7 @@
 <template>
   <router-link v-bind:to="'/recipes/' + favorite._id">
     <div class="card">
-      <img v-bind:src="favorite.imgUrl" class="img">
+      <img v-bind:src="favorite.imgUrl" v-bind:alt="favorite.title" class="img">
       <div class="description">
         <h3>{{favorite.title}}</h3>
         <p>{{descriptionLength}}</p>

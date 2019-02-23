@@ -40,10 +40,10 @@ export default {
 * {
   z-index: 0;
   background: #fafafa;
+  font-size: 16px;
 }
 
 p {
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
 }
 </style>
