@@ -52,7 +52,6 @@
         type="text"
         v-model="form.sourceUrl"
         v-bind:rules="rules.sourceUrl"
-        hint="Give both source name as well as URL"
         validate-on-blur
       />
       <v-text-field
@@ -63,14 +62,19 @@
         hint="Insert direct URL for photo you want to see on your recipe"
         validate-on-blur
       />
-      <v-btn :disabled="!formIsValid" flat color="secondary" type="submit">Submit</v-btn>
+      <v-btn
+        color="secondary"
+        v-bind:disabled="!isFormValid"
+        type="submit"
+        v-on:click.prevent="submit"
+      >Submit</v-btn>
     </v-form>
   </v-container>
 </template>
 
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "RecipeCreation",
@@ -105,15 +109,54 @@ export default {
           value => value.length > 50 || "You can make a meal out of nothing"
         ],
         sourceName: [value => value.length > 5 || "Sources are needed"],
-        sourceUrl: [value => value.length > 15 || "Links are useful too"],
-        image: [value => value.length > 60 || "Others want to see the meal"]
+        sourceUrl: [
+          value =>
+            !!value.match("(http[s]?://)?([^/s]+/)(.*)") ||
+            "Links are useful too"
+        ],
+        image: [
+          value =>
+            !!value.match("(http[s]?://)?([^/s]+/)(.*)") ||
+            "Others want to see the meal"
+        ]
       },
       initialState
     };
   },
-  methods: mapActions([""]),
+  methods: {
+    submit() {
+      this.form.categories.split(", ");
+
+      const data = {
+        category: this.form.categories.split(", "),
+        ingredients: this.form.ingredients.split("\n"),
+        author: this.userId,
+        title: this.form.title,
+        imageUrl: this.form.image,
+        description: this.form.description,
+        timeOfPrepataion: this.form.time,
+        preparation: this.form.preparation,
+        sourceName: this.form.sourceName,
+        sourceUrl: this.form.sourceUrl
+      };
+      console.log(data);
+    },
+    ...mapActions([""])
+  },
   computed: {
-    formIsValid() {}
+    isFormValid() {
+      return (
+        this.form.title &&
+        this.form.description &&
+        this.form.categories &&
+        this.form.time &&
+        this.form.preparation &&
+        this.form.ingredients &&
+        this.form.sourceName &&
+        this.form.sourceUrl
+      );
+    },
+    ...mapGetters(["userId"])
   }
 };
 </script>
@@ -124,9 +167,5 @@ h2 {
   font-weight: 600;
   color: #fb3453;
   margin-bottom: 1em;
-}
-
-v-text-field {
-  margin-top: 2em;
 }
 </style>
