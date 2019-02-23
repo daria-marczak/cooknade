@@ -1,13 +1,18 @@
 <template>
   <div class="recipe">
-    <img v-bind:src="recipe.imgUrl">
+    <img v-bind:src="recipe.imgUrl" v-bind:alt="recipe.title">
     <v-container fluid grid-list-md pa-2 class="container">
       <div class="top">
         <div class="recipe__title">
           <h2 v-html="recipe.title"/>
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
-        <button v-bind:class="[toggleClass]" v-on:click="toggleLike">
+        <button
+          role="button"
+          aria-label="button"
+          v-bind:class="[toggleClass]"
+          v-on:click="toggleLike"
+        >
           <v-icon class="icon">favorite_border</v-icon>
         </button>
       </div>

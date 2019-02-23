@@ -2,7 +2,7 @@
   <div class="noFavorites" v-if="userFavorites.length === 0">
     <p>You have not added any favorites</p>
   </div>
-  <div class="container" v-else>
+  <v-container fluid grid-list-md pa-2 v-else>
     <h2>Your favorites</h2>
     <FavoriteCard
       class="card"
@@ -10,7 +10,7 @@
       v-bind:key="favorite._id"
       v-bind:favorite="favorite"
     />
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -34,10 +34,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin: 2em;
-}
-
 h2 {
   font-family: Raleway, sans-serif;
   font-weight: 600;
