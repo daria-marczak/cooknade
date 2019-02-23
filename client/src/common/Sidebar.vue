@@ -23,13 +23,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Sidebar",
-  data() {
-    return {
-      userName: "daria_marczak"
-    };
-  }
+  computed: mapGetters(["userName"])
 };
 </script>
 
