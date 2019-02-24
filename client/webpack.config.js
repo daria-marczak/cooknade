@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpakPlugin = require('clean-webpack-plugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -52,7 +52,7 @@ module.exports = {
 		},
 	},
 	output: {
-		path: path.resolve(__dirname, '/dist'),
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
 	},
 	stats: {
@@ -66,21 +66,10 @@ module.exports = {
 			inject: true,
 		}),
 		new CleanWebpakPlugin(['dist']),
-		new SWPrecacheWebpackPlugin({
-			cacheId: 'cooknade',
-			filename: 'serviceWorkerCache.js',
-			staticFileGlobs: ['dist/**/*.{js,css}, ' / ''],
-			minify: true,
-			stripPrefix: 'dist/',
-			dontCacheBustUrlsMatching: /\.\w{6}\./,
+		new WorkboxPlugin.GenerateSW({
+			clientsClaim: true,
+			skipWaiting: true,
 		}),
-		new CopyWebpackPlugin([
-			{
-				from: path.resolve(__dirname, 'static'),
-				to: path.resolve(__dirname, 'dist'),
-				toType: 'dir',
-			},
-		]),
 		new webpack.HotModuleReplacementPlugin(),
 	],
 };

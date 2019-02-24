@@ -42,11 +42,10 @@ export default {
     toggleMobile() {
       this.isMobile ? "" : "desktop";
     },
-    ...mapActions(["getRecipes", "finishAuth", "getFavorites"])
+    ...mapActions(["getRecipes", "finishAuth"])
   },
   created() {
     this.getRecipes();
-    this.getFavorites(this.userId);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.getWindowWidth);
