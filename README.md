@@ -1,6 +1,6 @@
 # Cooknade
 
-Application for storing, finding and creating new recipes. Created in order to learn how to configure PWA apps and Vue.
+Application for storing, finding and creating new recipes. Created in order to learn how to configure PWA apps and get a better grasp of Vue, as well as backend technologies mentioned below.
 
 ## Start the application
 

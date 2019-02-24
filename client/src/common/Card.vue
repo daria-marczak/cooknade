@@ -36,8 +36,8 @@ a {
 
 @media screen and (min-width: 880px) and (max-width: 1200px) {
   .image {
-    width: 20em;
-    height: 20em;
+    width: 15em;
+    height: 15em;
     border-radius: 25px;
   }
 }

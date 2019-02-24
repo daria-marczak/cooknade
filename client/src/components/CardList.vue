@@ -63,13 +63,13 @@ export default {
   border-radius: 0;
 }
 
-@media screen and (min-width: 600px) and (max-width: 1100px) {
+@media screen and (min-width: 600px) and (max-width: 880px) {
   .carousel-cell {
     width: 30%;
   }
 }
 
-@media screen and (min-width: 1100px) and (max-width: 1500px) {
+@media screen and (min-width: 880px) and (max-width: 1500px) {
   .carousel-cell {
     width: 45%;
   }

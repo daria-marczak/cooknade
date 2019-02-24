@@ -36,3 +36,11 @@ exports.get_favorites = (req, res) => {
 			res.send(recipe);
 		});
 };
+
+exports.get_user_recipes = (req, res) => {
+	User.findById({ _id: req.params.userId })
+		.populate('authoredRecipes')
+		.exec((err, recipe) => {
+			res.send(recipe);
+		});
+};
