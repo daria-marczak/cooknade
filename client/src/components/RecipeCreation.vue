@@ -5,16 +5,14 @@
       <v-text-field
         label="Recipe title"
         type="text"
-        v-model="form.title"
-        v-bind:value="recipe && recipe.title"
+        v-bind:value="recipe ? recipe.title : form.title"
         v-bind:rules="rules.title"
         validate-on-blur
       />
       <v-text-field
         label="Categories"
         type="text"
-        v-model="form.categories"
-        v-bind:value="recipe && recipe.category"
+        v-bind:value="recipe ? recipe.category : form.categories"
         v-bind:rules="rules.categories"
         validate-on-blur
         hint="Use maximum of 3 categories"
@@ -22,14 +20,12 @@
       <v-text-field
         label="Description"
         type="text"
-        v-model="form.description"
-        v-bind:value="recipe && recipe.description"
+        v-bind:value="recipe ? recipe.description : form.description"
         v-bind:rules="rules.description"
         validate-on-blur
       />
       <v-textarea
-        v-model="form.ingredients"
-        v-bind:value="recipe && recipe.ingredients"
+        v-bind:value="recipe ? recipe.ingredients.toString() : form.ingredients"
         v-bind:rules="rules.ingredients"
       >
         <div slot="label">Ingredient list</div>
@@ -38,16 +34,14 @@
         color="secondary"
         label="Time of preparation"
         hint="Measured in minutes"
-        v-bind:value="recipe && parseInt(recipe.timeOfPreparation.slice(0, -4))"
+        v-bind:value="recipe ? time : form.time"
         v-bind:rules="rules.time"
         min="1"
         max="180"
-        v-model="form.time"
         thumb-label
       ></v-slider>
       <v-textarea
-        v-model="form.preparation"
-        v-bind:value="recipe && recipe.preparation"
+        v-bind:value="recipe ? recipe.preparation : form.preparation"
         v-bind:rules="rules.preparation"
       >
         <div slot="label">Preparation</div>
@@ -55,25 +49,22 @@
       <v-text-field
         label="Source name"
         type="text"
-        v-model="form.sourceName"
-        v-bind:value="recipe && recipe.sourceName"
+        v-bind:value="recipe ? recipe.sourceName : form.sourceName"
         v-bind:rules="rules.sourceName"
         validate-on-blur
       />
       <v-text-field
         label="Source URL"
         type="text"
-        v-model="form.sourceUrl"
         v-bind:rules="rules.sourceUrl"
-        v-bind:value="recipe && recipe.sourceUrl"
+        v-bind:value="recipe ? recipe.sourceUrl : form.sourceUrl"
         validate-on-blur
       />
       <v-text-field
         label="URL for image"
         type="text"
-        v-model="form.image"
         v-bind:rules="rules.image"
-        v-bind:value="recipe && recipe.imgUrl"
+        v-bind:value="recipe ? recipe.imgUrl : form.image"
         hint="Insert direct URL for photo you want to see on your recipe"
         validate-on-blur
       />
@@ -177,28 +168,17 @@ export default {
         ? "Edit recipe"
         : "Create new recipe";
     },
+    time() {
+      return (
+        this.recipe && parseInt(this.recipe.timeOfPreparation.slice(0, -4))
+      );
+    },
     ...mapGetters(["userId", "recipe"])
   },
   created() {
     const { recipeId } = this.$route.params;
     this.getSingleRecipe(recipeId);
   }
-  // mounted() {
-  //   if (this.recipe) {
-  //     this.form = {
-  //       category: this.recipe.category.toString(),
-  //       ingredients: this.recipe.ingredients.toString(),
-  //       author: this.recipe.author,
-  //       title: this.recipe.title,
-  //       imgUrl: this.recipe.image,
-  //       description: this.recipe.description,
-  //       timeOfPreparation: this.recipe.time,
-  //       preparation: this.recipe.preparation,
-  //       sourceName: this.recipe.sourceName,
-  //       sourceUrl: this.recipe.sourceUrl
-  //     };
-  //   }
-  // }
 };
 </script>
 
