@@ -13,7 +13,7 @@
 			"type": "image/png"
 		}
 	],
-	"start_url": "/?utm_source=a2hs",
+	"start_url": "localhost:8080/",
 	"background_color": "#FFFFFF",
 	"display": "standalone",
 	"scope": "/",
