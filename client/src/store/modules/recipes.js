@@ -36,7 +36,7 @@ const actions = {
 		axios.post(url, payload).catch(error => console.error(error));
 	},
 	editRecipe: ({ commit }, payload) => {
-		console.log('edit');
+		console.log('edit', payload);
 	},
 };
 

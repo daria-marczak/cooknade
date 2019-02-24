@@ -131,10 +131,10 @@ export default {
   },
   methods: {
     submit() {
-      this.form.categories.split(", ");
+      const { recipeId } = this.$route.params;
 
       const data = {
-        category: this.form.categories.split(", "),
+        category: this.form.categories.split(","),
         ingredients: this.form.ingredients.split("\n"),
         author: this.userId,
         title: this.form.title,
@@ -146,21 +146,24 @@ export default {
         sourceUrl: this.form.sourceUrl
       };
 
-      this.addRecipe(data);
+      this.$route.name === "RecipeEdit"
+        ? this.editRecipe(data, this.recipeId)
+        : this.addRecipe(data);
     },
-    ...mapActions(["addRecipe", "getSingleRecipe"])
+    ...mapActions(["addRecipe", "getSingleRecipe", "editRecipe"])
   },
   computed: {
     isFormValid() {
       return (
-        this.form.title &&
-        this.form.description &&
-        this.form.categories &&
-        this.form.time &&
-        this.form.preparation &&
-        this.form.ingredients &&
-        this.form.sourceName &&
-        this.form.sourceUrl
+        (this.form.title || this.recipe.title) &&
+        (this.form.description || this.recipe.description) &&
+        (this.form.categories || this.recipe.category) &&
+        (this.form.time || this.recipe.timeOfPreparation) &&
+        (this.form.preparation || this.recipe.preparation) &&
+        (this.form.ingredients || this.recipe.ingredients) &&
+        (this.form.sourceName || this.recipe.sourceName) &&
+        (this.form.sourceUrl || this.recipe.sourceUrl) &&
+        (this.form.image || this.recipe.imgUrl)
       );
     },
     header() {
