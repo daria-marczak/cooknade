@@ -5,12 +5,7 @@ const User = mongoose.model('User');
 exports.add_to_favorite = (req, res) => {
 	const { recipeId } = req.body;
 
-	User.findByIdAndUpdate(
-		{
-			_id: req.params.userId,
-		},
-		{ $addToSet: { favorites: recipeId } }
-	).then(() => {
+	User.findByIdAndUpdate(req.params.userId, { $addToSet: { favorites: recipeId } }).then(() => {
 		User.findById({
 			_id: req.params.userId,
 		}).then(() => res.send(res.status));
@@ -20,7 +15,7 @@ exports.add_to_favorite = (req, res) => {
 exports.delete_favorite = (req, res) => {
 	const { recipeId } = req.body;
 
-	User.findByIdAndUpdate({ _id: req.params.userId }, { $pull: { favorites: recipeId } }).then(() => {
+	User.findByIdAndUpdate(req.params.userId, { $pull: { favorites: recipeId } }).then(() => {
 		User.findById({
 			_id: req.params.userId,
 		}).then(() => res.send(res.status));

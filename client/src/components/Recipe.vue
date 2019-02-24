@@ -4,7 +4,10 @@
     <v-container fluid grid-list-md pa-2 class="container">
       <div class="top">
         <div class="recipe__title">
-          <h2 v-html="recipe.title"/>
+          <div class="title">
+            <h2 v-html="recipe.title"/>
+            <v-icon class="edit" v-if="toggleEditButton" v-on:click="editRecipe">edit</v-icon>
+          </div>
           <p>Time of preparation: {{recipe.timeOfPreparation}}</p>
         </div>
         <button
@@ -66,6 +69,9 @@ export default {
   computed: {
     toggleClass() {
       return this.isFav ? "active" : "inactive";
+    },
+    toggleEditButton() {
+      return this.recipe.author && this.recipe.author === this.userId;
     },
     ...mapGetters(["recipe", "userId", "userFavorites"])
   },
@@ -169,6 +175,19 @@ p {
 
 a {
   text-decoration: none;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title h2 {
+  margin-right: 0.5em;
+}
+
+.edit {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 881px) {

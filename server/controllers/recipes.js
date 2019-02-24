@@ -26,9 +26,6 @@ exports.get_one_recipe = (req, res) => {
 
 exports.create_new_recipe = (req, res, next) => {
 	Recipe.create(req.body)
-		.then(() => {
-			res.send(res.status);
-		})
 		.then(recipe => {
 			User.update(
 				{ _id: req.body.author },
@@ -36,6 +33,7 @@ exports.create_new_recipe = (req, res, next) => {
 					$push: { authoredRecipes: recipe.id },
 				}
 			);
+			res.send(res.status);
 		})
 		.catch(error => {
 			res.status(500).json({ error });
