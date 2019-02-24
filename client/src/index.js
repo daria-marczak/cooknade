@@ -33,6 +33,7 @@ const router = new VueRouter({
 		{ path: '/favorites', name: 'Favorites', component: Favorites },
 		{ path: '/profile', name: 'Profile', component: Profile },
 		{ path: '/create', name: 'RecipeCreation', component: RecipeCreation },
+		{ path: '/edit', name: 'RecipeEdit', component: RecipeCreation },
 	],
 });
 

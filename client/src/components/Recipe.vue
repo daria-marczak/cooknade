@@ -64,6 +64,12 @@ export default {
         recipe => recipe._id === this.recipeId
       );
     },
+    editRecipe() {
+      this.$router.push({
+        name: "RecipeEdit",
+        params: { recipeId: this.recipeId }
+      });
+    },
     ...mapActions(["getSingleRecipe", "addToFavorites", "deleteFavorite"])
   },
   computed: {
