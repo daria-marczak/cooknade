@@ -134,16 +134,24 @@ export default {
       const { recipeId } = this.$route.params;
 
       const data = {
-        category: this.form.categories.split(","),
-        ingredients: this.form.ingredients.split("\n"),
-        author: this.userId,
-        title: this.form.title,
-        imgUrl: this.form.image,
-        description: this.form.description,
-        timeOfPreparation: this.form.time.toString().concat(" min"),
-        preparation: this.form.preparation,
-        sourceName: this.form.sourceName,
-        sourceUrl: this.form.sourceUrl
+        category:
+          this.form.categories === ""
+            ? this.recipe.category
+            : this.form.categories.split(","),
+        ingredients:
+          this.form.ingredients === ""
+            ? this.recipe.ingredients
+            : this.form.ingredients.split("\n"),
+        author: this.userId || this.recipe.author,
+        title: this.form.title || this.recipe.title,
+        imgUrl: this.form.image || this.recipe.imgUrl,
+        description: this.form.description || this.recipe.description,
+        timeOfPreparation:
+          this.form.time.toString().concat(" min") ||
+          this.recipe.timeOfPreparation,
+        preparation: this.form.preparation || this.recipe.preparation,
+        sourceName: this.form.sourceName || this.recipe.sourceName,
+        sourceUrl: this.form.sourceUrl || this.recipe.sourceUrl
       };
 
       this.$route.name === "RecipeEdit"
