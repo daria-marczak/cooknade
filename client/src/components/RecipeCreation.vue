@@ -5,14 +5,14 @@
       <v-text-field
         label="Recipe title"
         type="text"
-        v-bind:value="recipe ? recipe.title : form.title"
+        v-bind:value="verifyRoute(form.title, recipe.title)"
         v-bind:rules="rules.title"
         validate-on-blur
       />
       <v-text-field
         label="Categories"
         type="text"
-        v-bind:value="recipe ? recipe.category : form.categories"
+        v-bind:value="verifyRoute(form.categories, recipe.category)"
         v-bind:rules="rules.categories"
         validate-on-blur
         hint="Use maximum of 3 categories"
@@ -20,12 +20,12 @@
       <v-text-field
         label="Description"
         type="text"
-        v-bind:value="recipe ? recipe.description : form.description"
+        v-bind:value="verifyRoute(form.description, recipe.description)"
         v-bind:rules="rules.description"
         validate-on-blur
       />
       <v-textarea
-        v-bind:value="recipe ? recipe.ingredients.toString() : form.ingredients"
+        v-bind:value="verifyRoute(form.ingredients, recipe.ingredients)"
         v-bind:rules="rules.ingredients"
       >
         <div slot="label">Ingredient list</div>
@@ -34,14 +34,14 @@
         color="secondary"
         label="Time of preparation"
         hint="Measured in minutes"
-        v-bind:value="recipe ? time : form.time"
+        v-bind:value="verifyRoute(form.time, time)"
         v-bind:rules="rules.time"
         min="1"
         max="180"
         thumb-label
       ></v-slider>
       <v-textarea
-        v-bind:value="recipe ? recipe.preparation : form.preparation"
+        v-bind:value="verifyRoute(form.preparation, recipe.preparation)"
         v-bind:rules="rules.preparation"
       >
         <div slot="label">Preparation</div>
@@ -49,7 +49,7 @@
       <v-text-field
         label="Source name"
         type="text"
-        v-bind:value="recipe ? recipe.sourceName : form.sourceName"
+        v-bind:value="verifyRoute(form.sourceName, recipe.sourceName)"
         v-bind:rules="rules.sourceName"
         validate-on-blur
       />
@@ -57,14 +57,14 @@
         label="Source URL"
         type="text"
         v-bind:rules="rules.sourceUrl"
-        v-bind:value="recipe ? recipe.sourceUrl : form.sourceUrl"
+        v-bind:value="verifyRoute(form.sourceUrl, recipe.sourceUrl)"
         validate-on-blur
       />
       <v-text-field
         label="URL for image"
         type="text"
         v-bind:rules="rules.image"
-        v-bind:value="recipe ? recipe.imgUrl : form.image"
+        v-bind:value="verifyRoute(form.image, recipe.imgUrl)"
         hint="Insert direct URL for photo you want to see on your recipe"
         validate-on-blur
       />
@@ -151,12 +151,16 @@ export default {
           this.recipe.timeOfPreparation,
         preparation: this.form.preparation || this.recipe.preparation,
         sourceName: this.form.sourceName || this.recipe.sourceName,
-        sourceUrl: this.form.sourceUrl || this.recipe.sourceUrl
+        sourceUrl: this.form.sourceUrl || this.recipe.sourceUrl,
+        recipeId
       };
 
       this.$route.name === "RecipeEdit"
         ? this.editRecipe(data, this.recipeId)
         : this.addRecipe(data);
+    },
+    verifyRoute(form, recipe) {
+      return this.$route.name === "RecipeEdit" ? recipe : form;
     },
     ...mapActions(["addRecipe", "getSingleRecipe", "editRecipe"])
   },
@@ -180,9 +184,9 @@ export default {
         : "Create new recipe";
     },
     time() {
-      return (
-        this.recipe && parseInt(this.recipe.timeOfPreparation.slice(0, -4))
-      );
+      if (this.recipe) {
+        return parseInt(this.recipe.timeOfPreparation.slice(0, -4));
+      }
     },
     ...mapGetters(["userId", "recipe"])
   },
