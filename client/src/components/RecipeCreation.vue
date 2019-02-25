@@ -1,18 +1,18 @@
 <template>
   <v-container fluid grid-list-md pa-2>
-    <h2>Create new recipe</h2>
+    <h2>{{header}}</h2>
     <v-form>
       <v-text-field
         label="Recipe title"
         type="text"
-        v-model="form.title"
+        v-bind:value="verifyRoute(form.title, recipe.title)"
         v-bind:rules="rules.title"
         validate-on-blur
       />
       <v-text-field
         label="Categories"
         type="text"
-        v-model="form.categories"
+        v-bind:value="verifyRoute(form.categories, recipe.category)"
         v-bind:rules="rules.categories"
         validate-on-blur
         hint="Use maximum of 3 categories"
@@ -20,45 +20,51 @@
       <v-text-field
         label="Description"
         type="text"
-        v-model="form.description"
+        v-bind:value="verifyRoute(form.description, recipe.description)"
         v-bind:rules="rules.description"
         validate-on-blur
       />
-      <v-textarea v-model="form.ingredients" v-bind:rules="rules.ingredients">
+      <v-textarea
+        v-bind:value="verifyRoute(form.ingredients, recipe.ingredients)"
+        v-bind:rules="rules.ingredients"
+      >
         <div slot="label">Ingredient list</div>
       </v-textarea>
       <v-slider
         color="secondary"
         label="Time of preparation"
         hint="Measured in minutes"
+        v-bind:value="verifyRoute(form.time, time)"
         v-bind:rules="rules.time"
         min="1"
         max="180"
-        v-model="form.time"
         thumb-label
       ></v-slider>
-      <v-textarea v-model="form.preparation" v-bind:rules="rules.preparation">
+      <v-textarea
+        v-bind:value="verifyRoute(form.preparation, recipe.preparation)"
+        v-bind:rules="rules.preparation"
+      >
         <div slot="label">Preparation</div>
       </v-textarea>
       <v-text-field
         label="Source name"
         type="text"
-        v-model="form.sourceName"
+        v-bind:value="verifyRoute(form.sourceName, recipe.sourceName)"
         v-bind:rules="rules.sourceName"
         validate-on-blur
       />
       <v-text-field
         label="Source URL"
         type="text"
-        v-model="form.sourceUrl"
         v-bind:rules="rules.sourceUrl"
+        v-bind:value="verifyRoute(form.sourceUrl, recipe.sourceUrl)"
         validate-on-blur
       />
       <v-text-field
         label="URL for image"
         type="text"
-        v-model="form.image"
         v-bind:rules="rules.image"
+        v-bind:value="verifyRoute(form.image, recipe.imgUrl)"
         hint="Insert direct URL for photo you want to see on your recipe"
         validate-on-blur
       />
@@ -125,39 +131,68 @@ export default {
   },
   methods: {
     submit() {
-      this.form.categories.split(", ");
+      const { recipeId } = this.$route.params;
 
       const data = {
-        category: this.form.categories.split(", "),
-        ingredients: this.form.ingredients.split("\n"),
-        author: this.userId,
-        title: this.form.title,
-        imgUrl: this.form.image,
-        description: this.form.description,
-        timeOfPreparation: this.form.time.toString().concat(" min"),
-        preparation: this.form.preparation,
-        sourceName: this.form.sourceName,
-        sourceUrl: this.form.sourceUrl
+        category:
+          this.form.categories === ""
+            ? this.recipe.category
+            : this.form.categories.split(","),
+        ingredients:
+          this.form.ingredients === ""
+            ? this.recipe.ingredients
+            : this.form.ingredients.split("\n"),
+        author: this.userId || this.recipe.author,
+        title: this.form.title || this.recipe.title,
+        imgUrl: this.form.image || this.recipe.imgUrl,
+        description: this.form.description || this.recipe.description,
+        timeOfPreparation:
+          this.form.time.toString().concat(" min") ||
+          this.recipe.timeOfPreparation,
+        preparation: this.form.preparation || this.recipe.preparation,
+        sourceName: this.form.sourceName || this.recipe.sourceName,
+        sourceUrl: this.form.sourceUrl || this.recipe.sourceUrl,
+        recipeId
       };
 
-      this.addRecipe(data);
+      this.$route.name === "RecipeEdit"
+        ? this.editRecipe(data, this.recipeId)
+        : this.addRecipe(data);
     },
-    ...mapActions(["addRecipe"])
+    verifyRoute(form, recipe) {
+      return this.$route.name === "RecipeEdit" ? recipe : form;
+    },
+    ...mapActions(["addRecipe", "getSingleRecipe", "editRecipe"])
   },
   computed: {
     isFormValid() {
       return (
-        this.form.title &&
-        this.form.description &&
-        this.form.categories &&
-        this.form.time &&
-        this.form.preparation &&
-        this.form.ingredients &&
-        this.form.sourceName &&
-        this.form.sourceUrl
+        (this.form.title || this.recipe.title) &&
+        (this.form.description || this.recipe.description) &&
+        (this.form.categories || this.recipe.category) &&
+        (this.form.time || this.recipe.timeOfPreparation) &&
+        (this.form.preparation || this.recipe.preparation) &&
+        (this.form.ingredients || this.recipe.ingredients) &&
+        (this.form.sourceName || this.recipe.sourceName) &&
+        (this.form.sourceUrl || this.recipe.sourceUrl) &&
+        (this.form.image || this.recipe.imgUrl)
       );
     },
-    ...mapGetters(["userId"])
+    header() {
+      return this.$route.name === "RecipeEdit"
+        ? "Edit recipe"
+        : "Create new recipe";
+    },
+    time() {
+      if (this.recipe) {
+        return parseInt(this.recipe.timeOfPreparation.slice(0, -4));
+      }
+    },
+    ...mapGetters(["userId", "recipe"])
+  },
+  created() {
+    const { recipeId } = this.$route.params;
+    this.getSingleRecipe(recipeId);
   }
 };
 </script>
