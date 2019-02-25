@@ -38,7 +38,7 @@ module.exports = {
 		index: 'static/index.html',
 		port: 8080,
 		historyApiFallback: {
-			rewrites: [{ from: /^\/$/, to: '/dist/index.html' }],
+			rewrites: [{ from: /^\/$/, to: 'vue-recipe/client/dist/index.html' }],
 		},
 		proxy: {
 			'/auth': 'http://localhost:4000',
@@ -71,22 +71,22 @@ module.exports = {
 			clientsClaim: true,
 			skipWaiting: true,
 		}),
-		new WebpackPwaManifest({
-			name: 'Cooknade',
-			short_name: 'Cooknade',
-			description: 'Application for storing your recipes',
-			background_color: '#fafafa',
-			theme_color: '#fb3453',
-			'theme-color': '#fb3453',
-			start_url: '/',
-			icons: [
-				{
-					src: path.resolve('static/favicon_io/android-chrome-512x512.png'),
-					sizes: [96, 128, 192, 256, 384, 512],
-					destination: path.join('assets', 'icons'),
-				},
-			],
-		}),
+		// new WebpackPwaManifest({
+		// 	name: 'Cooknade',
+		// 	short_name: 'Cooknade',
+		// 	description: 'Application for storing your recipes',
+		// 	background_color: '#fafafa',
+		// 	theme_color: '#fb3453',
+		// 	'theme-color': '#fb3453',
+		// 	start_url: '/',
+		// 	icons: [
+		// 		{
+		// 			src: path.resolve('static/favicon_io/android-chrome-512x512.png'),
+		// 			sizes: [96, 128, 192, 256, 384, 512],
+		// 			destination: path.join('assets', 'icons'),
+		// 		},
+		// 	],
+		// }),
 		new webpack.HotModuleReplacementPlugin(),
 	],
 };
