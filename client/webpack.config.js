@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpakPlugin = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -36,7 +38,7 @@ module.exports = {
 		index: 'static/index.html',
 		port: 8080,
 		historyApiFallback: {
-			rewrites: [{ from: /^\/$/, to: '/dist/index.html' }],
+			rewrites: [{ from: /^\/$/, to: 'vue-recipe/client/dist/index.html' }],
 		},
 		proxy: {
 			'/auth': 'http://localhost:4000',
@@ -51,7 +53,7 @@ module.exports = {
 		},
 	},
 	output: {
-		path: path.resolve(__dirname, '/dist'),
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
 	},
 	stats: {
@@ -65,6 +67,18 @@ module.exports = {
 			inject: true,
 		}),
 		new CleanWebpakPlugin(['dist']),
+		new WorkboxPlugin.GenerateSW({
+			clientsClaim: true,
+			skipWaiting: true,
+		}),
+		// new CopyPlugin([
+		// 	{
+		// 		from: './static/manifest.json',
+		// 	},
+		// ]),
+		new CopyWebpackPlugin([{ from: './static/icons', to: 'icons/' }, './static/manifest.json'], {
+			ignore: ['.DS_Store'],
+		}),
 		new webpack.HotModuleReplacementPlugin(),
 	],
 };
