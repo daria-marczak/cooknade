@@ -184,7 +184,7 @@ export default {
         : "Create new recipe";
     },
     time() {
-      if (this.recipe) {
+      if (this.recipe.timeOfPreparation) {
         return parseInt(this.recipe.timeOfPreparation.slice(0, -4));
       }
     },
