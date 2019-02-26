@@ -6,6 +6,7 @@ const url = 'http://localhost:4000/api/recipes';
 const state = {
 	favorites: [],
 	userFavorites: [],
+	authoredRecipes: [],
 };
 
 const actions = {
@@ -22,6 +23,9 @@ const actions = {
 	},
 	getFavorites: ({ commit }, userId) => {
 		commit('allFavorites', userId);
+	},
+	getAuthoredRecipes: ({ commit }, userId) => {
+		commit('authored', userId);
 	},
 };
 
@@ -41,10 +45,16 @@ const mutations = {
 			state.favorites = res.data.favorites;
 		});
 	},
+	authored: (state, userId) => {
+		const url = `${baseUrl}${userId}/recipes`;
+
+		axios.get(url).then(response => state.authoredRecipes.push(response.data.authoredRecipes));
+	},
 };
 
 const getters = {
 	userFavorites: state => state.favorites && state.favorites,
+	userRecipes: state => state.authoredRecipes[0],
 };
 
 export default { state, actions, mutations, getters };

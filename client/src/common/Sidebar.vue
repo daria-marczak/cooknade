@@ -18,6 +18,9 @@
       <router-link to="/favorites">
         <span>Favorites</span>
       </router-link>
+      <router-link to="/create">
+        <span>Add new recipe</span>
+      </router-link>
     </div>
   </div>
 </template>

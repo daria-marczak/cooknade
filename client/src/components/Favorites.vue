@@ -4,11 +4,11 @@
   </div>
   <v-container fluid grid-list-md pa-2 v-else>
     <h2>Your favorites</h2>
-    <FavoriteCard
+    <RecipeCard
       class="card"
       v-for="favorite in userFavorites"
       v-bind:key="favorite._id"
-      v-bind:favorite="favorite"
+      v-bind:recipe="favorite"
     />
   </v-container>
 </template>
@@ -16,12 +16,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-import FavoriteCard from "../common/FavoriteCard";
+import RecipeCard from "../common/RecipeCard";
 
 export default {
   name: "Favorites",
   components: {
-    FavoriteCard
+    RecipeCard
   },
   computed: {
     ...mapGetters(["userFavorites"])

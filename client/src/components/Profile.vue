@@ -3,15 +3,30 @@
     <h1>{{userName}}</h1>
     <div class="recipes">
       <h2>Your recipes</h2>
+      <RecipeCard
+        class="card"
+        v-for="recipe in userRecipes"
+        v-bind:key="recipe._id"
+        v-bind:recipe="recipe"
+      />
     </div>
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+import RecipeCard from "../common/RecipeCard";
+
 export default {
   name: "Profile",
-  computed: mapGetters(["userName"])
+  components: {
+    RecipeCard
+  },
+  methods: mapActions(["getAuthoredRecipes"]),
+  computed: mapGetters(["userName", "userRecipes", "userId"]),
+  created() {
+    this.getAuthoredRecipes(this.userId);
+  }
 };
 </script>
 

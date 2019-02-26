@@ -31,7 +31,8 @@ exports.create_new_recipe = (req, res, next) => {
 				{ _id: req.body.author },
 				{
 					$push: { authoredRecipes: recipe.id },
-				}
+				},
+				{ new: true }
 			);
 			res.send(res.status);
 		})
