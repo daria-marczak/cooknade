@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .card {
   display: flex;
-  max-width: 90%;
+  max-width: 100%;
   align-items: center;
 }
 
