@@ -4,8 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpakPlugin = require('clean-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const WebpackPwaManifest = require('webpack-manifest-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -72,29 +71,14 @@ module.exports = {
 			clientsClaim: true,
 			skipWaiting: true,
 		}),
-		new WebpackPwaManifest({
-			name: 'Cooknade',
-			short_name: 'Cooknade',
-			description: 'Application for storing your recipes',
-			background_color: '#fafafa',
-			theme_color: '#fb3453',
-			'theme-color': '#fb3453',
-			start_url: '/',
-			icons: [
-				{
-					src: path.resolve('static/favicon_io/android-chrome-512x512.png'),
-					sizes: [96, 128, 192, 256, 384, 512],
-					destination: path.join('assets', 'icons'),
-				},
-			],
-		}),
 		// new CopyPlugin([
 		// 	{
-		// 		from: '/manifest.json',
-		// 		to: '/client/dist/',
-		// 		toType: 'file',
+		// 		from: './static/manifest.json',
 		// 	},
 		// ]),
+		new CopyWebpackPlugin([{ from: './static/icons', to: 'icons/' }, './static/manifest.json'], {
+			ignore: ['.DS_Store'],
+		}),
 		new webpack.HotModuleReplacementPlugin(),
 	],
 };
