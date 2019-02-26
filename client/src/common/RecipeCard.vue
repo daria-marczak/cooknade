@@ -1,9 +1,9 @@
 <template>
-  <router-link v-bind:to="'/recipes/' + favorite._id">
+  <router-link v-bind:to="'/recipes/' + recipe._id">
     <div class="card">
-      <img v-bind:src="favorite.imgUrl" v-bind:alt="favorite.title" class="img">
+      <img v-bind:src="recipe.imgUrl" v-bind:alt="recipe.title" class="img">
       <div class="description">
-        <h3>{{favorite.title}}</h3>
+        <h3>{{recipe.title}}</h3>
         <p>{{descriptionLength}}</p>
       </div>
     </div>
@@ -14,18 +14,18 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "FavoriteCard",
-  props: ["favorite"],
+  name: "RecipeCard",
+  props: ["recipe"],
   computed: {
     descriptionLength() {
-      if (this.favorite.description.length > 150) {
-        return this.favorite.description
+      if (this.recipe.description.length > 150) {
+        return this.recipe.description
           .split(" ")
           .slice(0, 20)
           .join(" ")
           .concat("...");
       } else {
-        return this.favorite.description;
+        return this.recipe.description;
       }
     }
   }
