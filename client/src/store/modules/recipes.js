@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { router } from '../../index';
 
 const url = 'http://localhost:4000/api/recipes';
 
@@ -6,7 +7,6 @@ const state = {
 	recipes: [],
 	categories: [],
 	recipe: {},
-	message: '',
 };
 
 const mutations = {
@@ -24,9 +24,6 @@ const mutations = {
 			})
 			.catch(error => new Error(error));
 	},
-	saved: message => {
-		state.message = message;
-	},
 };
 
 const actions = {
@@ -42,7 +39,7 @@ const actions = {
 	editRecipe: ({ commit }, payload) => {
 		axios
 			.put(`${url}/${payload.recipeId}`, { payload })
-			.then(() => saved('Your recipe has been saved'))
+			.then(() => router.push('/home'))
 			.catch(error => new Error(error));
 	},
 };

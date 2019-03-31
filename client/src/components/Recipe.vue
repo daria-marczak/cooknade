@@ -60,9 +60,9 @@ export default {
       }
     },
     checkIfFavorite() {
-      this.isFav = this.userFavorites.some(
-        recipe => recipe._id === this.recipeId
-      );
+      this.isFav =
+        this.userFavorites &&
+        this.userFavorites.some(recipe => recipe._id === this.recipeId);
     },
     editRecipe() {
       this.$router.push({
