@@ -6,6 +6,7 @@ const state = {
 	recipes: [],
 	categories: [],
 	recipe: {},
+	message: '',
 };
 
 const mutations = {
@@ -13,7 +14,7 @@ const mutations = {
 		axios
 			.get(url)
 			.then(response => (state.recipes = response.data))
-			.catch(error => console.error(error));
+			.catch(error => new Error(error));
 	},
 	getSingleRecipe: (state, recipeId) => {
 		axios
@@ -21,7 +22,10 @@ const mutations = {
 			.then(response => {
 				state.recipe = response.data;
 			})
-			.catch(error => console.error(error));
+			.catch(error => new Error(error));
+	},
+	saved: message => {
+		state.message = message;
 	},
 };
 
@@ -33,14 +37,13 @@ const actions = {
 		commit('getSingleRecipe', recipeId);
 	},
 	addRecipe: ({ commit }, payload) => {
-		axios.post(url, payload).catch(error => console.error(error));
+		axios.post(url, payload).catch(error => new Error(error));
 	},
 	editRecipe: ({ commit }, payload) => {
-		console.log(payload);
 		axios
 			.put(`${url}/${payload.recipeId}`, { payload })
-			.then(response => console.log(response))
-			.catch(error => console.error(error));
+			.then(() => saved('Your recipe has been saved'))
+			.catch(error => new Error(error));
 	},
 };
 
