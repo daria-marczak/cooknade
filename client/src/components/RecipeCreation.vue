@@ -70,6 +70,7 @@
       />
       <v-btn
         color="secondary"
+        class="submitButton"
         v-bind:disabled="!isFormValid"
         type="submit"
         v-on:click.prevent="submit"
@@ -203,5 +204,9 @@ h2 {
   font-weight: 600;
   color: #fb3453;
   margin-bottom: 1em;
+}
+
+.submitButton {
+  margin-bottom: 2em;
 }
 </style>
