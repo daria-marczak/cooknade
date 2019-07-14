@@ -27,4 +27,4 @@ As a part of my learning, I used several technologies that are new for me.
 
 
 ![main page, mobile version](https://i.imgur.com/n4613zm.png)
-![recipe page](https://imgur.com/fguIBRd)
+![recipe page](https://i.imgur.com/fguIBRd.png)
