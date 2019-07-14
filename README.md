@@ -24,3 +24,7 @@ As a part of my learning, I used several technologies that are new for me.
 -   MongoDB
 -   Mongoose
 -   mLab
+
+
+![main page, mobile version](https://i.imgur.com/n4613zm.png)
+![recipe page](https://imgur.com/fguIBRd)
